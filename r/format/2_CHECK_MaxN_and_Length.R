@@ -180,8 +180,17 @@ synonyms<- googlesheets4::read_sheet(synonymsurl) %>%
 # Use return.changes=T to view the taxa.names.updated
 # Use save.report to save .csv file in your error directory
 
-maxn <- ga.change.synonyms(maxn, return.changes = T, save.report = T)
-length <- ga.change.synonyms(length, return.changes = T, save.report = T)
+maxn <- ga.change.synonyms(maxn, return.changes = T, save.report = F)
+write.csv(taxa.replaced.by.synonym, file = paste("data/errors to check/", 
+                                                 study,
+                                                 "_maxn_taxa.replaced.by.synonym.csv",
+                                                 sep = ""), row.names = FALSE)
+
+length <- ga.change.synonyms(length, return.changes = T, save.report = F)
+write.csv(taxa.replaced.by.synonym, file = paste("data/errors to check/", 
+                                                 study,
+                                                 "_length_taxa.replaced.by.synonym.csv",
+                                                 sep = ""), row.names = FALSE)
 
 # Check MaxN for species that have not previously been observed in your region ----
 maxn.species.not.previously.observed <- master%>%
@@ -212,16 +221,16 @@ write.csv(length.species.not.previously.observed, file = paste("data/errors to c
 # Check Length measurements vs. maximum length in life.history----
 # 1. Create average max length for each family and each genus (used if species isn't in life history sheet e.g. Scarus spp) ---
 
-family.max.length<-master%>%
-  filter(!is.na(fb.length_max))%>%
-  dplyr::group_by(family)%>%
-  dplyr::summarise(famlength_max=mean(fb.length_max))%>%
+family.max.length <- master %>%
+  filter(!is.na(fb.length_max)) %>%
+  dplyr::group_by(family) %>%
+  dplyr::summarise(famlength_max = mean(fb.length_max)) %>%
   ungroup()
 
-genus.max.length<-master%>%
-  filter(!is.na(fb.length_max))%>%
-  dplyr::group_by(genus)%>%
-  dplyr::summarise(genuslength_max=mean(fb.length_max))%>%
+genus.max.length <- master %>%
+  filter(!is.na(fb.length_max)) %>%
+  dplyr::group_by(genus) %>%
+  dplyr::summarise(genuslength_max = mean(fb.length_max)) %>%
   ungroup()
 
 # 2. Create a new master list with family and genus average maximum length where missing species max.length ----
@@ -230,26 +239,28 @@ genus.max.length<-master%>%
 # In this example the minimum length is 15% of the maximum on fishbase, fish that are smaller will show up as an error ("too small").
 # you can change these values to be stricter (e.g. increase the minimum value and decrease the maximum) or more tolerant (decrease min and increase max) below.
 
-master.min.max<-left_join(master,family.max.length,by=c("family"))%>% # add in family values
-  left_join(.,genus.max.length)%>% # add in genus values
-  dplyr::mutate(fb.length_max=ifelse((is.na(fb.length_max)),genuslength_max,fb.length_max))%>%
-  dplyr::mutate(fb.length_max=ifelse((is.na(fb.length_max)),famlength_max,fb.length_max))%>%
-  dplyr::select(-c(famlength_max,genuslength_max))%>%
-  mutate(min.length=0.15*fb.length_max)%>% # change values here
-  mutate(max.length=0.85*fb.length_max)%>% # change values here
+master.min.max <- left_join(master, family.max.length, by = c("family")) %>% # add in family values
+  left_join(., genus.max.length) %>% # add in genus values
+  dplyr::mutate(fb.length_max = ifelse((is.na(fb.length_max)), genuslength_max, fb.length_max)) %>%
+  dplyr::mutate(fb.length_max = ifelse((is.na(fb.length_max)), famlength_max, fb.length_max)) %>%
+  dplyr::select(-c(famlength_max, genuslength_max)) %>%
+  mutate(min.length = 0.15 * fb.length_max) %>% # change values here
+  mutate(max.length = 0.85 * fb.length_max) %>% # change values here
   glimpse()
 
 # 3. Create list of wrong length, ordered by %error, for checking in .EMObs files or removing from data----
-wrong.length.taxa<-left_join(length,master.min.max,by=c("family","genus","species"))%>%
-  dplyr::filter(length<min.length|length>max.length)%>%
-  mutate(reason=ifelse(length<min.length,"too small","too big"))%>%
-  dplyr::select(campaignid,sample,family,genus,species,length,min.length,max.length,fb.length_max,reason)%>%
+wrong.length.taxa <- left_join(length, master.min.max, by = c("family","genus","species")) %>%
+  dplyr::filter(length < min.length | length > max.length) %>%
+  mutate(reason = ifelse(length < min.length, "too small", "too big")) %>%
+  dplyr::select(campaignid, sample, family, genus, species, length, min.length, max.length, fb.length_max, reason)%>%
   mutate(difference=ifelse(reason%in%c("too small"),(min.length-length),(length-max.length)))%>%
-  dplyr::mutate(percent.of.fb.max=(length/fb.length_max*100))%>%
+  dplyr::mutate(percent.of.fb.max = (length/fb.length_max * 100)) %>%
   glimpse()
 
-setwd(error.dir)
-write.csv(wrong.length.taxa,file=paste(study,"check.wrong.length.taxa.vs.life.history.csv",sep = "_"), row.names=FALSE)
+write.csv(wrong.length.taxa, file = paste("data/errors to check/", 
+                                          study,
+                                          "_check.wrong.length.taxa.vs.life.history.csv",
+                                          sep = ""), row.names = FALSE)
 
 # You should view this .csv outside of R and revisit the .EMObs to check the lengths. Some of the length measurements could be correct.
 # We suggest sorting OpCode and then checking and/or fixing each .EMObs file one at a time.
@@ -259,28 +270,30 @@ write.csv(wrong.length.taxa,file=paste(study,"check.wrong.length.taxa.vs.life.hi
 # this is important if you use the 3D measurements (3D points and length) for abundance 
 # E.g. number above legal size
 
-length.sample <- length%>%distinct(campaignid,sample) # only examine samples where lengths were possible
+length.sample <- length %>% distinct(campaignid,sample) # only examine samples where lengths were possible
 
 # summarise length and then compare to maxn
-taxa.maxn.vs.stereo.summary<-length%>%
-  group_by(campaignid,sample,family,genus,species)%>%
-  dplyr::summarise(stereo.maxn=sum(number))%>%
-  full_join(maxn)%>%
-  replace_na(list(maxn=0))%>%
-  filter(!stereo.maxn==maxn)%>%
-  mutate(percent.difference = (maxn-stereo.maxn)/maxn*100)%>%
-  semi_join(length.sample)%>% # only keep ones where length was possible
-  replace_na(list(percent.difference=1))%>%
-  filter(!percent.difference%in%c(0))%>% #only for those that have missing lengths
-  mutate(difference=(maxn-stereo.maxn))%>%
-  mutate(difference=abs(difference))%>%
-  mutate(percent.difference=abs(percent.difference))%>%
-  select(campaignid,sample,family,genus,species,maxn,stereo.maxn,difference,percent.difference)%>%
-  arrange(-difference)%>%
+taxa.maxn.vs.stereo.summary <- length %>%
+  group_by(campaignid, sample, family, genus, species) %>%
+  dplyr::summarise(stereo.maxn = sum(number)) %>%
+  full_join(maxn) %>%
+  replace_na(list(maxn = 0)) %>%
+  filter(!stereo.maxn == maxn) %>%
+  mutate(percent.difference = (maxn - stereo.maxn) / maxn * 100) %>%
+  semi_join(length.sample) %>% # only keep ones where length was possible
+  replace_na(list(percent.difference = 1)) %>%
+  filter(!percent.difference %in% c(0)) %>% #only for those that have missing lengths
+  mutate(difference = (maxn - stereo.maxn)) %>%
+  mutate(difference = abs(difference)) %>%
+  mutate(percent.difference = abs(percent.difference)) %>%
+  select(campaignid, sample, family, genus, species, maxn, stereo.maxn, difference, percent.difference) %>%
+  arrange(-difference) %>%
   glimpse()
 
-setwd(error.dir)
-write.csv(taxa.maxn.vs.stereo.summary,file=paste(study,"taxa.maxn.vs.stereo.summary.csv",sep = "_"), row.names=FALSE)
+write.csv(taxa.maxn.vs.stereo.summary,file = paste("data/errors to check/", 
+                                                   study,
+                                                   "_taxa.maxn.vs.stereo.summary.csv",
+                                                   sep = ""), row.names=FALSE)
 
 # Plot of maxn vs stereo maxn (length and 3D point)
 ggplot(taxa.maxn.vs.stereo.summary,aes(x=maxn,y=stereo.maxn,label = paste(genus,species,sep=" ")))+
@@ -297,32 +310,29 @@ ggsave(file=paste("plots/format/", study, "_check.stereo.vs.maxn.png", sep = "")
 # Drop errors from data ----
 
 # CAUTION Standardise by Range if you wish  ----
-length<-length%>%
-  filter(range<10000)%>%
+length <- length%>%
+  filter(range < 10000)%>%
   glimpse()
 
 # CAUTION Remove taxa that don't match from the final data ----
-maxn<-anti_join(maxn,maxn.taxa.not.match.life.history)
-length<-anti_join(length,length.taxa.not.match)
+maxn <- anti_join(maxn, maxn.taxa.not.match.life.history)
+length <- anti_join(length, length.taxa.not.match)
 
 # CAUTION Drop wrong lengths ----
-drop.length<-wrong.length.taxa%>% # TO REMOVE LENGTHS OUTSIDE THE MIN/MAX OF MASTER LIST
-  distinct(family,genus,species,length)%>%
-  dplyr::select(family,genus,species,length)%>%
-  dplyr::mutate(key = paste(family,genus,species,length, sep = '_'))
+drop.length <- wrong.length.taxa %>% # TO REMOVE LENGTHS OUTSIDE THE MIN/MAX OF MASTER LIST
+  distinct(family, genus, species, length)%>%
+  dplyr::select(family, genus, species, length)%>%
+  dplyr::mutate(key = paste(family, genus, species, length, sep = '_'))
 
-length<-length%>%
-  dplyr::mutate(key = paste(family,genus,species,length, sep = '_'))%>%
-  anti_join(drop.length,by="key")%>% # for dropping wrong.lengths
+length <- length%>%
+  dplyr::mutate(key = paste(family, genus, species, length, sep = '_'))%>%
+  anti_join(drop.length, by = "key")%>% # for dropping wrong.lengths
   dplyr::select(-c(key))%>%
   glimpse()
 
 # WRITE FINAL checked data----
-setwd(tidy.dir)
-dir()
-
-write.csv(metadata, file=paste(study,"checked.metadata.csv",sep = "."), row.names=FALSE)
-write.csv(maxn, file=paste(study,"checked.maxn.csv",sep = "."), row.names=FALSE)
-write.csv(length, file=paste(study,"checked.length.csv",sep = "."), row.names=FALSE)
+write.csv(metadata, file = paste("data/staging/", study, "_checked.metadata.csv", sep = ""), row.names = FALSE)
+write.csv(maxn, file = paste("data/staging/", study, "_checked.maxn.csv", sep = ""), row.names = FALSE)
+write.csv(length, file = paste("data/staging/", study, "_checked.length.csv", sep = ""), row.names = FALSE)
 
 # Go to FORMAT script (3) 
