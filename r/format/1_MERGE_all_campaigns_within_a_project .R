@@ -25,7 +25,7 @@ library(stringr)
 
 ## Set Study Name ----
 # Change this to suit your study name. This will also be the prefix on your final saved files.
-study <- "add.name.here" 
+study <- "2021-05_Abrolhos_stereo-BRUVs" 
 
 ## Save directory name to use later----
 download.dir <- paste(getwd(), "/data/raw/em export", sep = "/")
