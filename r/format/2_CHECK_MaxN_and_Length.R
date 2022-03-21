@@ -41,7 +41,7 @@ error.dir <- paste(getwd(),"/data/errors to check", sep = "/")
 
 ## Set Study Name ----
 # Change this to suit your study name. This will also be the prefix on your final saved files.
-study <- "add.name.here"
+study <- "2021-05_Abrolhos_stereo-BRUVs"
 
 # Import metadata ---
 metadata <- read.csv(paste("data/staging/", study, "_metadata.csv", sep=""))
@@ -196,7 +196,7 @@ write.csv(taxa.replaced.by.synonym, file = paste("data/errors to check/",
 maxn.species.not.previously.observed <- master%>%
   anti_join(maxn, ., by = c("family","genus","species")) %>% 
   distinct(campaignid, sample, family, genus, species) %>% # use this line to show specific drops OR
-  # distinct(family, genus, species) %>% # use this line to keep only fam, gen, spe
+  distinct(family, genus, species) %>% # use this line to keep only fam, gen, spe
   filter(!species %in% c("spp")) %>% # Ignore spp in the report
   glimpse()
 
@@ -310,25 +310,25 @@ ggsave(file=paste("plots/format/", study, "_check.stereo.vs.maxn.png", sep = "")
 # Drop errors from data ----
 
 # CAUTION Standardise by Range if you wish  ----
-length <- length%>%
-  filter(range < 10000)%>%
-  glimpse()
+# length <- length%>%
+#   filter(range < 10000)%>%
+#   glimpse()
 
 # CAUTION Remove taxa that don't match from the final data ----
-maxn <- anti_join(maxn, maxn.taxa.not.match.life.history)
-length <- anti_join(length, length.taxa.not.match)
+# maxn <- anti_join(maxn, maxn.taxa.not.match.life.history)
+# length <- anti_join(length, length.taxa.not.match)
 
 # CAUTION Drop wrong lengths ----
-drop.length <- wrong.length.taxa %>% # TO REMOVE LENGTHS OUTSIDE THE MIN/MAX OF MASTER LIST
-  distinct(family, genus, species, length)%>%
-  dplyr::select(family, genus, species, length)%>%
-  dplyr::mutate(key = paste(family, genus, species, length, sep = '_'))
-
-length <- length%>%
-  dplyr::mutate(key = paste(family, genus, species, length, sep = '_'))%>%
-  anti_join(drop.length, by = "key")%>% # for dropping wrong.lengths
-  dplyr::select(-c(key))%>%
-  glimpse()
+# drop.length <- wrong.length.taxa %>% # TO REMOVE LENGTHS OUTSIDE THE MIN/MAX OF MASTER LIST
+#   distinct(family, genus, species, length)%>%
+#   dplyr::select(family, genus, species, length)%>%
+#   dplyr::mutate(key = paste(family, genus, species, length, sep = '_'))
+# 
+# length <- length%>%
+#   dplyr::mutate(key = paste(family, genus, species, length, sep = '_'))%>%
+#   anti_join(drop.length, by = "key")%>% # for dropping wrong.lengths
+#   dplyr::select(-c(key))%>%
+#   glimpse()
 
 # WRITE FINAL checked data----
 write.csv(metadata, file = paste("data/staging/", study, "_checked.metadata.csv", sep = ""), row.names = FALSE)
