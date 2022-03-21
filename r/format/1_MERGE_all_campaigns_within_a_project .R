@@ -28,7 +28,7 @@ library(stringr)
 study <- "add.name.here" 
 
 ## Save directory name to use later----
-download.dir <- paste(getwd(),"/data/raw/em export",sep="/")
+download.dir <- paste(getwd(), "/data/raw/em export", sep = "/")
 
 # Combine all data----
 # The below code will find all files that have the same ending (e.g. "_Metadata.csv") and bind them together.
@@ -60,7 +60,7 @@ maxn<-ga.create.em.maxn() %>%
 unique(maxn$sample)
 
 # Save MaxN file ----
-write.csv(maxn, paste("data/staging/", study,"_maxn.csv", sep=""), row.names = FALSE)
+write.csv(maxn, paste("data/staging/", study,"_maxn.csv", sep = ""), row.names = FALSE)
 
 ## Combine Length, Lengths and 3D point files into length3dpoints----
 length3dpoints<-ga.create.em.length3dpoints() %>%
@@ -70,5 +70,4 @@ length3dpoints<-ga.create.em.length3dpoints() %>%
   glimpse()
 
 ## Save length files ----
-setwd(staging.dir)
-write.csv(length3dpoints, paste("data/staging/", study,"_length3dpoints.csv", sep=""), row.names = FALSE)
+write.csv(length3dpoints, paste("data/staging/", study,"_length3dpoints.csv", sep = ""), row.names = FALSE)
