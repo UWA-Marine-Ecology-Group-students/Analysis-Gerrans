@@ -1,4 +1,5 @@
 ### Merge EventMeasure database output tables into maxn and length files
+
 ### OBJECTIVES ###
 # combine database tables into single Metadata, MaxN and Length files for subsequent validation and data analysis.
 
@@ -24,7 +25,7 @@ library(stringr)
 
 ## Set Study Name ----
 # Change this to suit your study name. This will also be the prefix on your final saved files.
-study <- "database.tables.example" 
+study <- "add.name.here" 
 
 ## Save directory name to use later----
 download.dir <- paste(getwd(),"/data/raw/em export",sep="/")
