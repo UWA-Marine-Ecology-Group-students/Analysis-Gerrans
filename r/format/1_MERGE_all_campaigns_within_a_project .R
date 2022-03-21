@@ -22,7 +22,6 @@ library(tidyr)
 library(purrr)
 library(readr)
 library(stringr)
-install.packages("devtools")
 
 ## Set Study Name ----
 # Change this to suit your study name. This will also be the prefix on your final saved files.
