@@ -27,23 +27,27 @@ install_github("UWAMEGFisheries/GlobalArchive") #to check for updates
 library(GlobalArchive)
 # To connect to life.history
 library(httpuv)
-library(googlesheets)
+library(googlesheets4)
 # To tidy data
 library(tidyr)
 library(plyr)
 library(dplyr)
 library(readr)
 library(ggplot2)
+library(stringr)
+
+## Save directory name to use later----
+error.dir <- paste(getwd(),"/data/errors to check", sep = "/")
 
 ## Set Study Name ----
 # Change this to suit your study name. This will also be the prefix on your final saved files.
 study <- "add.name.here"
 
 # Import metadata ---
-metadata <- read.csv(paste(study, "metadata.csv", sep="_"))
+metadata <- read.csv(paste("data/staging/", study, "_metadata.csv", sep=""))
 
 # Import MaxN file---
-maxn <- read_csv(paste(study, "maxn.csv", sep="_")) %>%
+maxn <- read_csv(paste("data/staging/", study, "_maxn.csv", sep = "")) %>%
   mutate(maxn = as.numeric(maxn)) %>%
   mutate(species = tolower(species)) %>%
   select(campaignid, sample, family, genus, species, maxn) %>%
@@ -51,7 +55,7 @@ maxn <- read_csv(paste(study, "maxn.csv", sep="_")) %>%
   glimpse()
 
 # Import length/3d file----
-length<-read_csv(file = paste(study, "length3dpoints.csv", sep = "_"), na = c("", " ")) %>%
+length<-read_csv(file = paste("data/staging/", study, "_length3dpoints.csv", sep = ""), na = c("", " ")) %>%
   mutate(number = as.numeric(number)) %>%
   mutate(range = as.numeric(range)) %>%
   mutate(length = as.numeric(length)) %>%
@@ -81,8 +85,6 @@ schools <- length %>%
 
 # Plot to visualise length data ----
 # Add justification and units to x
-setwd(plots.dir)
-
 theme_ga<-theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                 panel.background = element_blank(), axis.line = element_line(colour = "black"))
 
@@ -94,7 +96,7 @@ ggplot(data = length, aes(as.numeric(length))) +
   labs(x = "Length (mm)", y = "Density") +
   theme_ga
 
-ggsave(file = paste(study, "check.length.png", sep = "_"))
+ggsave(file = paste("plots/format/", study, "_check.length.png", sep = ""))
 
 # Range vs. Density ---
 # Use this plot to visulaise the range distribution in your data
@@ -104,7 +106,7 @@ ggplot(data = length, aes(as.numeric(range))) +
   labs(x = "Range (mm)", y = "Density")+
   theme_ga
 
-ggsave(file = paste(study, "check.range.png", sep = "_"))
+ggsave(file = paste("plots/format/", study, "_check.range.png", sep = ""))
 
 # Plot to visualise Range vs Length data ---
 # note that only 3Dpoints typically occur past 10m---
@@ -115,8 +117,7 @@ ggplot(data = length, aes(range, length)) +
   labs(x = "Range (mm)", y = "Length (mm)") +
   theme_ga
 
-ggsave(file = paste(study, "check.range.vs.length.png", sep = "_"))
-
+ggsave(file = paste("plots/format/", study, "_check.range.vs.length.png", sep = ""))
 
 # Standardise for Range ----
 # To standardise for Range we can remove any length observations outside Range rules
@@ -152,25 +153,26 @@ out.of.range <- filter(length, range > 10000)%>% # 10 m = 10000 mm
 
 # Use the abbreviation in the code below
 # currently set for the Pilbara, Australia example data set ('NW' for North-west)
+url <- "https://docs.google.com/spreadsheets/d/1SMLvR9t8_F-gXapR2EemQMEPSw_bUbPLcXd3lJ5g5Bo/edit?ts=5e6f36e2#gid=825736197"
 
-master <- gs_title("Australia.life.history") %>%
-  gs_read_csv(ws = "australia.life.history") %>%
-  ga.clean.names() %>%
-  filter(grepl('Australia', global.region)) %>% # Change country here
-  filter(grepl('NW', marine.region)) %>% # Select marine region (currently this is only for Australia)
-  dplyr::mutate(all=as.numeric(all)) %>%
-  dplyr::mutate(bll=as.numeric(bll)) %>%
-  dplyr::mutate(a=as.numeric(a)) %>%
-  dplyr::mutate(b=as.numeric(b)) %>%
-  select(family,genus,species,marine.region,length.measure,a,b,all,bll,fb.length_max,fb.ltypemaxm) %>%
+master <- googlesheets4::read_sheet(url) %>% 
+  ga.clean.names()%>%
+  dplyr::filter(grepl('Australia', global.region))%>% # Change country here
+  dplyr::filter(grepl('SW', marine.region))%>% # Select marine region (currently this is only for Australia)
+  dplyr::mutate(all = as.numeric(all)) %>%
+  dplyr::mutate(bll = as.numeric(bll)) %>%
+  dplyr::mutate(a = as.numeric(a)) %>%
+  dplyr::mutate(b = as.numeric(b)) %>%
+  select(family, genus, species, marine.region, length.measure, a, b, all, bll, fb.length_max, fb.ltypemaxm) %>%
   distinct() %>%
   glimpse()
 
-synonyms <- gs_title("Synonyms_Australia") %>%
-  gs_read_csv(ws = "Synonyms_Australia") %>%
+synonymsurl <- "https://docs.google.com/spreadsheets/d/1R0uU9Q0VkUDQFgGTK3VnIGxmc101jxhlny926ztWoiQ/edit#gid=567803926"
+
+synonyms<- googlesheets4::read_sheet(synonymsurl) %>% 
   distinct() %>%
   ga.clean.names() %>%
-  select(-comment)
+  dplyr::select(-comment)
 
 # Update by synonyms ----
 # This function will change the names of species that have been reclassified (i.e. Pagrus auratus to Chrysophrys auratus). This function also fixes some common spelling mistakes (i.e. Chyrosophyrs	auratus to Chrysophrys auratus)
@@ -178,30 +180,34 @@ synonyms <- gs_title("Synonyms_Australia") %>%
 # Use return.changes=T to view the taxa.names.updated
 # Use save.report to save .csv file in your error directory
 
-maxn<-ga.change.synonyms(maxn,return.changes=T,save.report = T)
-length<-ga.change.synonyms(length,return.changes=T,save.report = T)
+maxn <- ga.change.synonyms(maxn, return.changes = T, save.report = T)
+length <- ga.change.synonyms(length, return.changes = T, save.report = T)
 
 # Check MaxN for species that have not previously been observed in your region ----
-maxn.species.not.previously.observed<-master%>%
-  anti_join(maxn,.,by=c("family","genus","species"))%>% 
-  distinct(campaignid,sample,family,genus,species)%>% # use this line to show specific drops OR
-  # distinct(family,genus,species)%>% # use this line to keep only fam, gen, spe
-  filter(!species%in%c("spp"))%>% # Ignore spp in the report
+maxn.species.not.previously.observed <- master%>%
+  anti_join(maxn, ., by = c("family","genus","species")) %>% 
+  distinct(campaignid, sample, family, genus, species) %>% # use this line to show specific drops OR
+  # distinct(family, genus, species) %>% # use this line to keep only fam, gen, spe
+  filter(!species %in% c("spp")) %>% # Ignore spp in the report
   glimpse()
 
-setwd(error.dir)
-write.csv(maxn.species.not.previously.observed,file=paste(study,"maxn.species.not.previously.observed.csv",sep = "."), row.names=FALSE)
+write.csv(maxn.species.not.previously.observed, file = paste("data/errors to check/", 
+                                                             study,
+                                                             "_maxn.species.not.previously.observed.csv",
+                                                             sep = ""), row.names = FALSE)
 
 # Check Length for species that have not previously been observed in your region ----
 #maxn.species.not.previously.observed
-length.species.not.previously.observed<-master%>%
-  anti_join(length,.,by=c("family","genus","species"))%>%
-  dplyr::distinct(campaignid,sample,family,genus,species)%>%
-  filter(!species%in%c("spp"))%>% # Ignore spp in the report
+length.species.not.previously.observed <- master %>%
+  anti_join(length, ., by = c("family", "genus", "species")) %>%
+  dplyr::distinct(campaignid, sample, family, genus, species) %>%
+  filter(!species %in% c("spp")) %>% # Ignore spp in the report
   glimpse()
 
-setwd(error.dir)
-write.csv(length.species.not.previously.observed,file=paste(study,"length.species.not.previously.observed.csv",sep = "."), row.names=FALSE)
+write.csv(length.species.not.previously.observed, file = paste("data/errors to check/", 
+                                                            study,
+                                                            "_length.species.not.previously.observed.csv",
+                                                            sep = ""), row.names = FALSE)
 
 # Check Length measurements vs. maximum length in life.history----
 # 1. Create average max length for each family and each genus (used if species isn't in life history sheet e.g. Scarus spp) ---
@@ -281,8 +287,8 @@ ggplot(taxa.maxn.vs.stereo.summary,aes(x=maxn,y=stereo.maxn,label = paste(genus,
   geom_abline(colour="red",alpha=0.5)+
   geom_point()+
   geom_text(alpha=0.2)+theme_ga
-setwd(plots.dir)
-ggsave(file=paste(study,"check.stereo.vs.maxn.png",sep = "_"))
+
+ggsave(file=paste("plots/format/", study, "_check.stereo.vs.maxn.png", sep = ""))
 
 # We strongly encourage you to fix these errors at the source (i.e. EMObs), however, there may be observations that you want to keep in the raw data but not upload to Global Archive (i.e. seasnakes), that you can drop using the code below.
 # NOW check through the files in your "Errors to check" folder and make corrections to .EMObs / generic files and then re-run this script.
