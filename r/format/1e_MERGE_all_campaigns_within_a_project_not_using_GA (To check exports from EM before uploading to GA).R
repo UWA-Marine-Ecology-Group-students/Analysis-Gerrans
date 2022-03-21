@@ -1,5 +1,4 @@
 ### Merge EventMeasure database output tables into maxn and length files
-
 ### OBJECTIVES ###
 # combine database tables into single Metadata, MaxN and Length files for subsequent validation and data analysis.
 
@@ -22,8 +21,6 @@ library(tidyr)
 library(purrr)
 library(readr)
 library(stringr)
-# to connect to googlesheets
-library(googlesheets4)
 
 ## Set Study Name ----
 # Change this to suit your study name. This will also be the prefix on your final saved files.
@@ -37,16 +34,10 @@ download.dir <- paste(getwd(),"/data/raw/em export",sep="/")
 # The end product is three data frames; metadata, maxn and length.
 
 # Metadata ----
-# You will need a metadata file. This can either be a .csv file or a google sheet 
+# You will need a metadata file.
 # If using a .csv the file name MUST end in "_Metadata.csv"
-# Both csv and googlesheet will need to match the global archive format
+# Need to match the global archive format
 # See the user manual: https://globalarchivemanual.github.io/ for the correct format
-# In this example we will use a csv file (you will need to create a csv file to upload to GlobalArchive anyway but can use this script to save the file to upload to globalarchive)
-
-# # For google sheet ----
-# metadata<-gs_title("Paste title of labsheet here")%>%
-#   gs_read_csv(ws = "paste sheet name here")%>%
-#   ga.clean.names()
 
 # For csv file ----
 metadata <- ga.list.files("_Metadata.csv") %>% # list all files ending in "_Metadata.csv"
@@ -80,4 +71,3 @@ length3dpoints<-ga.create.em.length3dpoints() %>%
 ## Save length files ----
 setwd(staging.dir)
 write.csv(length3dpoints, paste("data/staging/", study,"_length3dpoints.csv", sep=""), row.names = FALSE)
-
