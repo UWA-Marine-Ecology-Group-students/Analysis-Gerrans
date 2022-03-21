@@ -23,39 +23,14 @@ library(purrr)
 library(readr)
 library(stringr)
 # to connect to googlesheets
-library(googlesheets)
+library(googlesheets4)
 
 ## Set Study Name ----
 # Change this to suit your study name. This will also be the prefix on your final saved files.
-study<-"database.tables.example" 
+study <- "database.tables.example" 
 
-## Folder Structure ----
-# This script uses one main folder ('working directory')
-# Three subfolders will be created within the 'working directory'. They are 'EM Export','Staging' and 'Tidy data'
-# Save the database exports into the 'EM Export' folder
-# The 'Staging' folder is used to save the combined files (e.g. metadata, maxn or length) NOTE: These initial outputs have not gone through any check (e.g. checks against the life-history sheet)
-
-# Naming in the script is extremely important! Names need to be consistent or the script will break
-
-# **The only folder you will need to create is your working directory**
-
-## Set your working directory ----
-working.dir<-dirname(rstudioapi::getActiveDocumentContext()$path) # to directory of current file - or type your own
-
-## Save these directory names to use later----
-staging.dir<-paste(working.dir,"Staging",sep="/") 
-download.dir<-paste(working.dir,"EM Export",sep="/")
-tidy.dir<-paste(working.dir,"Tidy data",sep="/")
-
-setwd(working.dir)
-
-## Create EM Export, Staging and Tidy data folders ----
-dir.create(file.path(working.dir, "EM Export"))
-dir.create(file.path(working.dir, "Staging"))
-dir.create(file.path(working.dir, "Tidy data"))
-
-# BEFORE CONTINUING ----
-# You should now copy your database tables into the EM Export folder 
+## Save directory name to use later----
+download.dir <- paste(getwd(),"/data/raw/em export",sep="/")
 
 # Combine all data----
 # The below code will find all files that have the same ending (e.g. "_Metadata.csv") and bind them together.
@@ -68,40 +43,41 @@ dir.create(file.path(working.dir, "Tidy data"))
 # See the user manual: https://globalarchivemanual.github.io/ for the correct format
 # In this example we will use a csv file (you will need to create a csv file to upload to GlobalArchive anyway but can use this script to save the file to upload to globalarchive)
 
-# For google sheet ----
-metadata<-gs_title("Paste title of labsheet here")%>%
-  gs_read_csv(ws = "paste sheet name here")%>%
-  ga.clean.names()
+# # For google sheet ----
+# metadata<-gs_title("Paste title of labsheet here")%>%
+#   gs_read_csv(ws = "paste sheet name here")%>%
+#   ga.clean.names()
 
 # For csv file ----
-metadata <-ga.list.files("_Metadata.csv")%>% # list all files ending in "_Metadata.csv"
-  purrr::map_df(~ga.read.files_em.csv(.))%>% # combine into dataframe
-  dplyr::select(campaignid,sample,latitude,longitude,date,time,location,status,site,depth,observer,successful.count,successful.length,comment)%>% # This line ONLY keep the 15 columns listed. Remove or turn this line off to keep all columns (Turn off with a # at the front).
+metadata <- ga.list.files("_Metadata.csv") %>% # list all files ending in "_Metadata.csv"
+  purrr::map_df(~ga.read.files_em.csv(.)) %>% # combine into dataframe
+  dplyr::mutate(campaignid = study) %>%
+  dplyr::select(campaignid,sample,latitude,longitude,date,time,location,status,site,depth,observer,successful.count,successful.length) %>% # This line ONLY keep the 15 columns listed. Remove or turn this line off to keep all columns (Turn off with a # at the front).
   glimpse()
 
 unique(metadata$campaignid) # check the number of campaigns in metadata, and the campaign name
 
-setwd(staging.dir)
-write.csv(metadata,paste(study,"metadata.csv",sep="_"),row.names = FALSE)
+write.csv(metadata, paste("data/staging/", study,"_metadata.csv", sep = ""), row.names = FALSE)
 
 ## Combine Points and Count files into maxn ----
-maxn<-ga.create.em.maxn()%>%
-  dplyr::inner_join(metadata)%>%
-  dplyr::filter(successful.count=="Yes")%>%
-  dplyr::filter(maxn>0)
+maxn<-ga.create.em.maxn() %>%
+  dplyr::inner_join(metadata) %>%
+  dplyr::filter(successful.count == "Yes") %>%
+  dplyr::filter(maxn > 0)
+
+unique(maxn$sample)
 
 # Save MaxN file ----
-setwd(staging.dir)
-write.csv(maxn,paste(study,"maxn.csv",sep="_"),row.names = FALSE)
+write.csv(maxn, paste("data/staging/", study,"_maxn.csv", sep=""), row.names = FALSE)
 
 ## Combine Length, Lengths and 3D point files into length3dpoints----
-length3dpoints<-ga.create.em.length3dpoints()%>%
-  dplyr::select(-c(time,comment))%>% # take time out as there is also a time column in the metadata
-  dplyr::inner_join(metadata)%>%
-  dplyr::filter(successful.length=="Yes")%>%
+length3dpoints<-ga.create.em.length3dpoints() %>%
+  dplyr::select(-c(time, comment)) %>% # take time out as there is also a time column in the metadata
+  dplyr::inner_join(metadata) %>%
+  dplyr::filter(successful.length == "Yes") %>%
   glimpse()
 
 ## Save length files ----
 setwd(staging.dir)
-write.csv(length3dpoints,paste(study,"length3dpoints.csv",sep="_"),row.names = FALSE)
+write.csv(length3dpoints, paste("data/staging/", study,"_length3dpoints.csv", sep=""), row.names = FALSE)
 
