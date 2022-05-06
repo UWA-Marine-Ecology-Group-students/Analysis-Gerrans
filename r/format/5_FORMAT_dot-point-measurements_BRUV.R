@@ -20,6 +20,7 @@ study<-"2021-05_Abrolhos_BRUVs"
 
 ## Set your working directory ----
 working.dir <- getwd() # this only works through github projects
+working.dir
 
 ## Save these directory names to use later----
 data.dir <- paste(working.dir,"data",sep="/") 
@@ -34,7 +35,7 @@ setwd(em.export.dir)
 dir()
 
 # Read in metadata----
-metadata <- read_csv("2021-05_Abrolhos_stereo-BRUVs_Metadata.csv") %>% # read in the file
+metadata <- read_csv("2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv") %>% # read in the file
   ga.clean.names() %>% # tidy the column names using GlobalArchive function 
   dplyr::select(sample, latitude, longitude, date, site, location, successful.count) %>% # select only these columns to keep
   mutate(sample=as.character(sample)) %>% # in this example dataset, the samples are numerical
