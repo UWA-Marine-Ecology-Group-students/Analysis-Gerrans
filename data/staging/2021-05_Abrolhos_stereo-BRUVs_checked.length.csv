@@ -19,7 +19,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.13","Sparidae","Chrysophrys","auratus",478.18797,1,1802.0467
 "2021-05_Abrolhos_stereo-BRUVs","npz6.13","Sparidae","Chrysophrys","auratus",426.01511,1,2235.21474
 "2021-05_Abrolhos_stereo-BRUVs","npz6.13","Sparidae","Chrysophrys","auratus",441.41138,1,1830.18918
-"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Suezichthys","cyanolaemus",87.34562,1,1021.48753
+"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Suezichthys","cyanolaemus",85.8974,1,1020.01063
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Scaridae","Scarus","spp",292.326,1,2411.92921
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Labroides","dimidiatus",60.30365,1,1966.43571
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Labroides","dimidiatus",78.48391,1,2457.94276
@@ -62,11 +62,9 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",131.94655,1,1303.29977
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",96.59257,1,1552.08213
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",60.80301,1,1629.97073
-"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",48.91764,1,1378.86015
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",114.71679,1,1706.84638
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",60.16065,1,1590.81839
-"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",38.72109,1,1223.50204
-"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",38.04986,1,1849.29733
+"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",45.605,1,1381.86685
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",149.82962,1,1844.65772
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",126.36663,1,2689.93362
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",109.88928,1,1826.81928
@@ -74,7 +72,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",48.02652,1,1347.55333
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",126.30593,1,1461.55837
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",67.44464,1,1776.41716
-"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",52.14052,1,1587.07752
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",132.83929,1,1726.71471
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",144.24045,1,1415.03537
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Pomacentridae","Chromis","spp",95.28779,1,1803.41924
@@ -124,7 +121,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",148.35093,1,1720.15896
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",107.75361,1,1977.15348
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",98.92898,1,1500.68282
-"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",53.63534,1,1625.3446
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",86.96605,1,1457.71371
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",74.77827,1,1849.24666
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",265.28847,1,1196.88505
@@ -161,8 +157,8 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",67.51192,1,1493.67283
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",77.89174,1,1530.39397
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",90.79239,1,1384.91396
-"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",53.10081,1,1768.33138
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",68.87099,1,1085.81108
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",78.97357,1,1746.66667
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",65.5132,1,1136.68973
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",73.82256,1,1020.98065
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",122.14572,1,1294.55266
@@ -209,7 +205,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Lethrinidae","Lethrinus","miniatus",292.49548,1,1899.1113
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Lethrinidae","Lethrinus","miniatus",327.38365,1,1946.83829
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Mullidae","Parupeneus","spilurus",86.4454,1,1139.22239
-"2021-05_Abrolhos_stereo-BRUVs","npz6.20","Labridae","Suezichthys","cyanolaemus",84.51625,1,1866.73152
+"2021-05_Abrolhos_stereo-BRUVs","npz6.20","Labridae","Suezichthys","cyanolaemus",68.70664,1,1878.04406
 "2021-05_Abrolhos_stereo-BRUVs","npz6.20","Labridae","Suezichthys","cyanolaemus",43.46685,1,1760.65974
 "2021-05_Abrolhos_stereo-BRUVs","npz6.20","Haemulidae","Diagramma","pictum labiosum",650.97792,1,1280.79796
 "2021-05_Abrolhos_stereo-BRUVs","npz6.20","Carangidae","Carangoides","spp",769.94355,1,2005.41885
@@ -236,7 +232,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.21","Mullidae","Parupeneus","spilurus",180.39205,1,1738.4247
 "2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Suezichthys","cyanolaemus",86.31514,1,1367.04958
 "2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Suezichthys","cyanolaemus",63.57097,1,1506.88432
-"2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Suezichthys","cyanolaemus",90.64128,1,1366.91062
+"2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Suezichthys","cyanolaemus",80.99784,1,1366.31377
 "2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Coris","auricularis",120.86375,1,912.26499
 "2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Coris","auricularis",132.37399,1,1204.92518
 "2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Coris","auricularis",120.68187,1,816.46967
@@ -342,11 +338,11 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",112.6721,1,1023.2477
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",78.86222,1,1247.19734
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",173.84971,1,1554.16783
+"2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",61.33671,1,1076.35332
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",162.34033,1,1500.37954
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",70.16649,1,1085.97077
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",179.86375,1,1899.0259
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",69.74392,1,1518.95877
-"2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",54.53154,1,1064.11011
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",69.886,1,1612.56533
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",71.08056,1,1295.11968
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Coris","auricularis",107.81384,1,1495.32927
@@ -369,7 +365,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Choerodon","rubescens",524.64544,1,3609.79469
 "2021-05_Abrolhos_stereo-BRUVs","npz6.24","Labridae","Suezichthys","cyanolaemus",56.65307,1,1159.49761
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Coris","caudimacula",127.50199,1,1490.29194
-"2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Suezichthys","cyanolaemus",103.00883,1,734.64489
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Anampses","caeruleopunctatus",304.86085,1,4616.23403
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Acanthuridae","Acanthurus","olivaceus",293.73853,1,3535.87234
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Sparidae","Chrysophrys","auratus",411.14198,1,1697.59707
@@ -395,8 +390,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Chaetodontidae","Chaetodon","lunula",205.83132,1,2265.18107
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Coris","auricularis",80.14745,1,2581.55209
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Coris","auricularis",105.86993,1,1832.13782
-"2021-05_Abrolhos_stereo-BRUVs","npz6.26","Pomacanthidae","Pomacanthus","semicirculatus",475.08598,1,4056.09266
-"2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",66.07569,1,1923.58228
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",81.49795,1,1582.75036
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",83.73812,1,1544.76606
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",73.64486,1,1483.43978
@@ -454,7 +447,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Lethrinidae","Lethrinus","nebulosus",656.57803,1,1803.38229
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Lethrinidae","Lethrinus","nebulosus",663.63219,1,1419.62709
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Choerodon","rubescens",384.58469,1,2081.1137
-"2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Suezichthys","cyanolaemus",120.4278,1,706.93765
+"2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Suezichthys","cyanolaemus",46.18164,1,702.31619
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Labroides","dimidiatus",97.7217,1,1587.53852
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Carangidae","Seriola","hippos",937.32267,1,2216.02144
 "2021-05_Abrolhos_stereo-BRUVs","npz6.28","Triakidae","Mustelus","spp",707.39895,1,1350.8778
@@ -473,7 +466,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Labridae","Suezichthys","cyanolaemus",15.03435,1,942.14574
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Cirrhitidae","Paracirrhites","forsteri",51.40475,1,1008.25476
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Labridae","Bodianus","solatus",346.06485,1,2561.96234
-"2021-05_Abrolhos_stereo-BRUVs","npz6.36","Pomacanthidae","Chaetodontoplus","personifer",318.15078,1,2074.04021
+"2021-05_Abrolhos_stereo-BRUVs","npz6.36","Pomacanthidae","Chaetodontoplus","personifer",328.94142,1,2090.04004
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Lethrinidae","Lethrinus","miniatus",413.27859,1,1240.99286
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Lethrinidae","Lethrinus","nebulosus",631.18795,1,999.89609
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Lethrinidae","Lethrinus","nebulosus",571.17483,1,1196.93882
@@ -525,9 +518,9 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.5","Mullidae","Parupeneus","spilurus",155.2964,1,2037.8733
 "2021-05_Abrolhos_stereo-BRUVs","npz6.5","Mullidae","Parupeneus","spilurus",151.17931,1,2221.59332
 "2021-05_Abrolhos_stereo-BRUVs","npz6.5","Mullidae","Parupeneus","spilurus",219.80739,1,2493.75097
-"2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Suezichthys","cyanolaemus",91.12803,1,837.65447
-"2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Suezichthys","cyanolaemus",85.19068,1,1031.44539
-"2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Suezichthys","cyanolaemus",93.17608,1,1149.83556
+"2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Suezichthys","cyanolaemus",87.14262,1,836.5332
+"2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Suezichthys","cyanolaemus",80.32999,1,1034.87267
+"2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Suezichthys","cyanolaemus",87.05658,1,1147.25285
 "2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Coris","auricularis",198.5305,1,1275.37929
 "2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Coris","auricularis",113.99095,1,1316.89118
 "2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Coris","auricularis",147.68541,1,1507.86575
@@ -808,7 +801,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lutjanidae","Pristipomoides","typus",460.39337,1,1748.21888
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lutjanidae","Pristipomoides","multidens",526.04942,1,2382.14112
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lutjanidae","Pristipomoides","multidens",511.44689,1,2314.8617
-"2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lutjanidae","Pristipomoides","typus",608.86143,1,3279.59791
+"2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lutjanidae","Pristipomoides","typus",579.30245,1,3263.26527
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lethrinidae","Lethrinus","miniatus",573.22808,1,1490.7609
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lutjanidae","Pristipomoides","typus",554.6113,1,2010.75953
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Lutjanidae","Pristipomoides","typus",444.91732,1,1106.34095
@@ -820,7 +813,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Sparidae","Chrysophrys","auratus",305.31663,1,2011.2532
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Sparidae","Chrysophrys","auratus",269.29831,1,2004.13663
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Sparidae","Chrysophrys","auratus",295.0264,1,2315.95991
-"2021-05_Abrolhos_stereo-BRUVs","npz9.27","Monacanthidae","Eubalichthys","caeruleoguttatus",378.89815,1,2918.18245
+"2021-05_Abrolhos_stereo-BRUVs","npz9.27","Monacanthidae","Eubalichthys","caeruleoguttatus",361.97058,1,2947.94771
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Sparidae","Chrysophrys","auratus",296.1828,1,1586.97174
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Sparidae","Chrysophrys","auratus",283.86419,1,977.00637
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Sparidae","Chrysophrys","auratus",281.04183,1,1802.68443
@@ -854,7 +847,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.3","Labridae","Coris","auricularis",58.83493,1,632.50289
 "2021-05_Abrolhos_stereo-BRUVs","npz9.3","Lethrinidae","Lethrinus","miniatus",483.4045,1,1242.92286
 "2021-05_Abrolhos_stereo-BRUVs","npz9.30","Pinguipedidae","Parapercis","nebulosa",82.88166,1,1947.32589
-"2021-05_Abrolhos_stereo-BRUVs","npz9.30","Glaucosomatidae","Glaucosoma","buergeri",573.7118,1,2705.16062
 "2021-05_Abrolhos_stereo-BRUVs","npz9.30","Glaucosomatidae","Glaucosoma","buergeri",398.85605,1,2216.30363
 "2021-05_Abrolhos_stereo-BRUVs","npz9.30","Lethrinidae","Lethrinus","nebulosus",495.09095,1,1441.63749
 "2021-05_Abrolhos_stereo-BRUVs","npz9.30","Lethrinidae","Lethrinus","miniatus",423.19472,1,1206.2625
@@ -866,7 +858,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Chaetodontidae","Chaetodon","assarius",126.33242,1,2629.21536
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Chaetodontidae","Chaetodon","assarius",124.15652,1,2742.27561
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Chaetodontidae","Chaetodon","assarius",113.94197,1,2098.83465
-"2021-05_Abrolhos_stereo-BRUVs","npz9.5","Chaetodontidae","Chaetodon","assarius",235.53041,1,2822.66439
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Labridae","Coris","auricularis",254.40262,1,1169.03283
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Labridae","Coris","auricularis",246.54248,1,1099.29669
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Apogonidae","Ostorhinchus","spp",71.28796,1,892.01575
@@ -888,7 +879,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Sparidae","Chrysophrys","auratus",400.84141,1,1220.06564
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Sparidae","Chrysophrys","auratus",404.91857,1,1626.94927
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Carcharhinidae","Carcharhinus","plumbeus",471.76399,1,936.90086
-"2021-05_Abrolhos_stereo-BRUVs","npz9.8","Glaucosomatidae","Glaucosoma","buergeri",621.08015,1,3579.60542
+"2021-05_Abrolhos_stereo-BRUVs","npz9.8","Glaucosomatidae","Glaucosoma","buergeri",525.32033,1,3467.85195
 "2021-05_Abrolhos_stereo-BRUVs","npz9.8","Labridae","Bodianus","solatus",329.27494,1,3303.17027
 "2021-05_Abrolhos_stereo-BRUVs","npz9.8","Carangidae","Pseudocaranx","spp",315.774,1,3619.81735
 "2021-05_Abrolhos_stereo-BRUVs","npz9.8","Carangidae","Pseudocaranx","spp",409.87061,1,2044.02249
@@ -923,7 +914,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Austrolabrus","maculatus",NA,1,718.60705
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Labroides","dimidiatus",NA,1,2417.91232
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Serranidae","Epinephelus","rivulatus",NA,1,1986.51642
-"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",NA,9,1465.06731
+"2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",NA,12,1465.06731
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Pomacentridae","Chromis","spp",NA,43,2394.70634
 "2021-05_Abrolhos_stereo-BRUVs","npz6.17","Labridae","Unknown","spp",NA,1,1634.20629
 "2021-05_Abrolhos_stereo-BRUVs","npz6.17","Apogonidae","Ostorhinchus","spp",NA,1,1364.44443
@@ -947,7 +938,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,1,1719.14319
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,1,2401.46703
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,1,1322.40877
-"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,53,1331.7772
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,54,1331.7772
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,1,863.20746
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Labroides","dimidiatus",NA,1,1418.10823
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Lethrinidae","Lethrinus","ravus",NA,1,1612.63888
@@ -983,6 +974,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Anampses","geographicus",NA,1,2336.50057
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Anampses","geographicus",NA,1,2409.92545
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Anampses","geographicus",NA,1,2880.01507
+"2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Suezichthys","cyanolaemus",NA,1,715.10584
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Suezichthys","cyanolaemus",NA,1,1194.61724
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Chaetodontidae","Chaetodon","auriga",NA,1,2839.97844
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Chaetodontidae","Chaetodon","auriga",NA,1,5441.23934
@@ -1016,6 +1008,8 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Labroides","dimidiatus",NA,1,1947.41424
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Labroides","dimidiatus",NA,1,1929.99059
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Labridae","Labroides","dimidiatus",NA,1,2106.05438
+"2021-05_Abrolhos_stereo-BRUVs","npz6.26","Pomacanthidae","Pomacanthus","semicirculatus",NA,1,3591.07409
+"2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",NA,1,1888.57816
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",NA,1,2499.6251
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",NA,1,2830.61229
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Pomacentridae","Chromis","spp",NA,50,1943.62313
@@ -1133,6 +1127,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.3","Muraenidae","Gymnothorax","woodwardi",NA,1,1280.43698
 "2021-05_Abrolhos_stereo-BRUVs","npz9.3","Labridae","Coris","auricularis",NA,1,781.02311
 "2021-05_Abrolhos_stereo-BRUVs","npz9.30","Carangidae","Seriola","dumerili",NA,1,2982.9574
+"2021-05_Abrolhos_stereo-BRUVs","npz9.30","Glaucosomatidae","Glaucosoma","buergeri",NA,1,2511.78055
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Labridae","Bodianus","solatus",NA,1,2487.81488
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Mullidae","Parupeneus","spilurus",NA,1,2720.94382
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Mullidae","Parupeneus","spilurus",NA,1,1612.98685
@@ -1140,6 +1135,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Mullidae","Parupeneus","spilurus",NA,1,1740.49912
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Muraenidae","Gymnothorax","thyrsoideus",NA,1,1007.47101
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Chaetodontidae","Chaetodon","assarius",NA,46,3990.90118
+"2021-05_Abrolhos_stereo-BRUVs","npz9.5","Chaetodontidae","Chaetodon","assarius",NA,1,2868.19988
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Labridae","Coris","auricularis",NA,1,1055.55455
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Muraenidae","Gymnothorax","woodwardi",NA,1,1051.20331
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Muraenidae","Gymnothorax","woodwardi",NA,1,1252.63109
