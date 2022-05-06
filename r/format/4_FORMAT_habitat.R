@@ -31,7 +31,7 @@ gsr <- function(Source, Search, Replace) {
 }
 
 # Study name---
-study<-"project.example"  ## change for your project
+study<-"2021-05_Abrolhos_stereo-BRUVs"  ## change for your project
 
 ## Set your working directory ----
 working.dir<-dirname(rstudioapi::getActiveDocumentContext()$path) # to directory of current file - or type your own
