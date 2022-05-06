@@ -63,6 +63,7 @@ length<-read_csv(file = paste("data/staging/", study, "_length3dpoints.csv", sep
   filter(!is.na(number)) %>% # find and remove sync points that are not fish
   replace_na(list(family = "Unknown", genus = "Unknown", species = "spp")) %>% # remove any NAs in taxa name
   mutate(genus = str_replace_all(.$genus,c("NA" = "Unknown"))) %>%
+  filter(!family%in%c("Unknown")) %>%
   glimpse()
 
 # BASIC checks----
