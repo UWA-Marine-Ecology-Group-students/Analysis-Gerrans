@@ -20,6 +20,7 @@ study<-"2021-05_Abrolhos_BOSS"
 
 ## Set your working directory ----
 working.dir <- getwd() # this only works through github projects
+working.dir
 
 ## Save these directory names to use later----
 data.dir <- paste(working.dir,"data",sep="/") 
