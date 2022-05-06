@@ -41,7 +41,7 @@ library(ggplot2)
 library(fst)
 
 # Study name---
-study <- "add.name.here" ## change for your project
+study <- "2021-05_Abrolhos_stereo-BRUVs" ## change for your project
 
 # Read in the data----
 # Read in metadata----
