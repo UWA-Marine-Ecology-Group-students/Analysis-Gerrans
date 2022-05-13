@@ -103,8 +103,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.18","Haemulidae","Diagramma","pictum labiosum",639.36275,1,2916.51496
 "2021-05_Abrolhos_stereo-BRUVs","npz6.18","Haemulidae","Diagramma","pictum labiosum",666.49832,1,2181.61159
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Choerodon","rubescens",358.3793,1,2027.70873
-"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","pallimaculatus",2335.06049,1,2731.37823
-"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","pallimaculatus",197.20983,1,2347.35205
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Nemipteridae","Pentapodus","nagasakiensis",200.77557,1,1044.26699
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",100.79895,1,1619.78744
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",141.07715,1,1713.08277
@@ -861,8 +859,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Lethrinidae","Lethrinus","nebulosus",508.67056,1,906.53626
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Sparidae","Chrysophrys","auratus",357.48491,1,790.35139
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Scaridae","Scarus","sp3",378.60908,1,2048.95444
-"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","pallimaculatus",219.52253,1,3058.17297
-"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","pallimaculatus",234.81827,1,3378.73118
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Lagocephalus","sceleratus",631.9461,1,3633.40584
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Sparidae","Chrysophrys","auratus",366.03562,1,1311.10836
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Sparidae","Chrysophrys","auratus",360.45343,1,1234.27426
@@ -919,6 +915,8 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.17","Labridae","Stethojulis","spp",NA,1,1683.74005
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Pinguipedidae","Parapercis","haackei",NA,1,1227.45193
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Muraenidae","Gymnothorax","woodwardi",NA,1,875.96623
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","pallimaculatus",NA,1,2056.60694
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","pallimaculatus",NA,1,2368.0108
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,1,1479.84707
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,1,1595.97503
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",NA,1,2028.57174
@@ -1011,7 +1009,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Coris","auricularis",NA,1,2164.78569
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Coris","auricularis",NA,1,1676.22738
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Coris","auricularis",NA,1,2179.80977
-"2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Coris","auricularis",NA,11,1814.30283
+"2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Coris","auricularis",NA,10,1814.30283
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Haemulidae","Diagramma","pictum labiosum",NA,1,1361.58318
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Lethrinidae","Lethrinus","nebulosus",NA,1,1658.47086
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Lethrinidae","Lethrinus","nebulosus",NA,1,2512.46094
@@ -1152,4 +1150,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Pomacentridae","Chromis","spp",NA,1,704.06242
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Pomacentridae","Chromis","spp",NA,1,785.2132
 "2021-05_Abrolhos_stereo-BRUVs","npz9.5","Pomacentridae","Chromis","spp",NA,1,980.12675
+"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","pallimaculatus",NA,1,3631.10789
+"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","pallimaculatus",NA,1,2913.84443
 "2021-05_Abrolhos_stereo-BRUVs","npz9.9","Dasyatidae","Taeniurops","meyeni",NA,1,7112.23833
