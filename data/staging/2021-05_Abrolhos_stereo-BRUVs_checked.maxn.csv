@@ -26,7 +26,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Scaridae","Scarus","spp",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Serranidae","Epinephelus","rivulatus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Trygonorrhinidae","Aptychotrema","vincentiana",1
-"2021-05_Abrolhos_stereo-BRUVs","npz6.15","Triakidae","Mustelus","spp",1
+"2021-05_Abrolhos_stereo-BRUVs","npz6.15","Triakidae","Mustelus","ravidus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.17","Apogonidae","Ostorhinchus","spp",3
 "2021-05_Abrolhos_stereo-BRUVs","npz6.17","Carangidae","Seriola","hippos",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.17","Chaetodontidae","Chaetodon","assarius",3
@@ -45,14 +45,14 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Coris","auricularis",164
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Labridae","Labroides","dimidiatus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Lethrinidae","Lethrinus","miniatus",2
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Lethrinidae","Lethrinus","punctulatus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Lethrinidae","Lethrinus","ravus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Mullidae","Parupeneus","spilurus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Muraenidae","Gymnothorax","woodwardi",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Nemipteridae","Pentapodus","nagasakiensis",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Pinguipedidae","Parapercis","haackei",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.2","Scombridae","Scomberomorus","spp",1
-"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","spp",2
-"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Unknown","unknown","unknown",1
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","pallimaculatus",2
 "2021-05_Abrolhos_stereo-BRUVs","npz6.20","Carangidae","Carangoides","spp",6
 "2021-05_Abrolhos_stereo-BRUVs","npz6.20","Haemulidae","Diagramma","pictum labiosum",3
 "2021-05_Abrolhos_stereo-BRUVs","npz6.20","Labridae","Choerodon","rubescens",4
@@ -123,7 +123,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Coris","auricularis",34
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Labroides","dimidiatus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Suezichthys","cyanolaemus",1
-"2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Unknown","sp1",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Lethrinidae","Lethrinus","miniatus",6
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Lethrinidae","Lethrinus","nebulosus",5
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Mullidae","Parupeneus","spilurus",1
@@ -131,7 +130,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Pempherididae","Pempheris","tominagai",7
 "2021-05_Abrolhos_stereo-BRUVs","npz6.27","Pomacentridae","Chromis","spp",59
 "2021-05_Abrolhos_stereo-BRUVs","npz6.28","Tetraodontidae","Lagocephalus","sceleratus",1
-"2021-05_Abrolhos_stereo-BRUVs","npz6.28","Triakidae","Mustelus","spp",1
+"2021-05_Abrolhos_stereo-BRUVs","npz6.28","Triakidae","Mustelus","ravidus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.28","Unknown","Unknown","spp",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Apogonidae","Ostorhinchus","spp",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Carangidae","Seriola","hippos",1
@@ -207,7 +206,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.C01","Rhinidae","Rhynchobatus","australiae",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.C01","Sparidae","Chrysophrys","auratus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.C01","Tetraodontidae","Lagocephalus","sceleratus",4
-"2021-05_Abrolhos_stereo-BRUVs","npz6.C01","Triakidae","Mustelus","spp",1
+"2021-05_Abrolhos_stereo-BRUVs","npz6.C01","Triakidae","Mustelus","ravidus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz6.C02","Tetraodontidae","Lagocephalus","sceleratus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.1","Labridae","Bodianus","solatus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.1","Lethrinidae","Lethrinus","miniatus",3
@@ -263,7 +262,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.18","Monacanthidae","Nelusetta","ayraud",2
 "2021-05_Abrolhos_stereo-BRUVs","npz9.18","Sparidae","Chrysophrys","auratus",3
 "2021-05_Abrolhos_stereo-BRUVs","npz9.18","Tetraodontidae","Lagocephalus","sceleratus",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.18","Triakidae","Mustelus","spp",1
+"2021-05_Abrolhos_stereo-BRUVs","npz9.18","Triakidae","Mustelus","ravidus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.19","Lethrinidae","Gymnocranius","grandoculis",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.19","Lethrinidae","Lethrinus","miniatus",3
 "2021-05_Abrolhos_stereo-BRUVs","npz9.19","Sparidae","Chrysophrys","auratus",2
@@ -280,15 +279,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.22","Lutjanidae","Pristipomoides","multidens",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.22","Unknown","Unknown","unknown",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.22","Unknown","Unknown","unknown",2
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Gerreidae","Parequula","spp",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Labridae","Coris","auricularis",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Labridae","Stethojulis","spp",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Lethrinidae","Gymnocranius","spp",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Monacanthidae","Unknown","spp",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Pinguipedidae","Parapercis","nebulosa",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Triakidae","Hemitriakis","falcata",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Triakidae","Mustelus","spp",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.24","Unknown","Unknown","unknown",4
 "2021-05_Abrolhos_stereo-BRUVs","npz9.25","Lutjanidae","Pristipomoides","multidens",4
 "2021-05_Abrolhos_stereo-BRUVs","npz9.25","Muraenidae","Gymnothorax","woodwardi",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.25","Sparidae","Chrysophrys","auratus",5
@@ -311,7 +301,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Serranidae","Epinephelus","areolatus",2
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Sparidae","Chrysophrys","auratus",10
 "2021-05_Abrolhos_stereo-BRUVs","npz9.28","Lutjanidae","Pristipomoides","multidens",2
-"2021-05_Abrolhos_stereo-BRUVs","npz9.28","Pinguipedidae","Unknown","spp",1
+"2021-05_Abrolhos_stereo-BRUVs","npz9.28","Pinguipedidae","Parapercis","spp",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.28","Sparidae","Chrysophrys","auratus",2
 "2021-05_Abrolhos_stereo-BRUVs","npz9.28","Unknown","Unknown","unknown",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.29","Carangidae","Decapterus","muroadsi",1
@@ -352,7 +342,7 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Carcharhinidae","Carcharhinus","plumbeus",1
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Sparidae","Chrysophrys","auratus",9
 "2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Lagocephalus","sceleratus",1
-"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","spp",2
+"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","pallimaculatus",2
 "2021-05_Abrolhos_stereo-BRUVs","npz9.8","Carangidae","Pseudocaranx","spp",9
 "2021-05_Abrolhos_stereo-BRUVs","npz9.8","Carangidae","Seriola","dumerili",4
 "2021-05_Abrolhos_stereo-BRUVs","npz9.8","Carcharhinidae","Carcharhinus","plumbeus",1

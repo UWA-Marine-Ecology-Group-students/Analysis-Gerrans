@@ -4,9 +4,12 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",59.38776,60,340,400,"too small",0.61224,14.84694
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",45.605,60,340,400,"too small",14.395,11.40125
 "2021-05_Abrolhos_stereo-BRUVs","npz6.14","Labridae","Coris","auricularis",48.02652,60,340,400,"too small",11.97348,12.00663
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","pallimaculatus",2335.06049,27,153,180,"too big",2182.06049,1297.25582777778
+"2021-05_Abrolhos_stereo-BRUVs","npz6.2","Tetraodontidae","Torquigener","pallimaculatus",197.20983,27,153,180,"too big",44.20983,109.561016666667
 "2021-05_Abrolhos_stereo-BRUVs","npz6.21","Labridae","Suezichthys","cyanolaemus",86.31514,14.55,82.45,97,"too big",3.86514,88.9846804123711
 "2021-05_Abrolhos_stereo-BRUVs","npz6.22","Labridae","Coris","auricularis",58.44115,60,340,400,"too small",1.55885,14.6102875
 "2021-05_Abrolhos_stereo-BRUVs","npz6.26","Mullidae","Parupeneus","spilurus",73.64486,75,425,500,"too small",1.35514000000001,14.728972
+"2021-05_Abrolhos_stereo-BRUVs","npz6.27","Labridae","Coris","auricularis",52.3788,60,340,400,"too small",7.6212,13.0947
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Echeneidae","Echeneis","naucrates",108.71306,165,935,1100,"too small",56.28694,9.88300545454545
 "2021-05_Abrolhos_stereo-BRUVs","npz6.36","Pomacanthidae","Chaetodontoplus","personifer",328.94142,52.5,297.5,350,"too big",31.44142,93.9832628571429
 "2021-05_Abrolhos_stereo-BRUVs","npz6.5","Labridae","Suezichthys","cyanolaemus",87.14262,14.55,82.45,97,"too big",4.69261999999999,89.8377525773196
@@ -17,4 +20,6 @@
 "2021-05_Abrolhos_stereo-BRUVs","npz9.27","Monacanthidae","Eubalichthys","caeruleoguttatus",361.97058,57,323,380,"too big",38.97058,95.2554157894737
 "2021-05_Abrolhos_stereo-BRUVs","npz9.3","Labridae","Coris","auricularis",59.69994,60,340,400,"too small",0.300060000000002,14.924985
 "2021-05_Abrolhos_stereo-BRUVs","npz9.3","Labridae","Coris","auricularis",58.83493,60,340,400,"too small",1.16507,14.7087325
+"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","pallimaculatus",219.52253,27,153,180,"too big",66.52253,121.956961111111
+"2021-05_Abrolhos_stereo-BRUVs","npz9.7","Tetraodontidae","Torquigener","pallimaculatus",234.81827,27,153,180,"too big",81.81827,130.454594444444
 "2021-05_Abrolhos_stereo-BRUVs","npz9.8","Glaucosomatidae","Glaucosoma","buergeri",525.32033,82.5,467.5,550,"too big",57.82033,95.5127872727273
