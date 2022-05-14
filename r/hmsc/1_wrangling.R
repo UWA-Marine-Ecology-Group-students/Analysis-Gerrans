@@ -18,9 +18,10 @@ bruv_maxn_w <- reshape2::dcast(bruv_maxn[,1:3],
                           sample ~ scientific, fun = sum)
 head(bruv_maxn_w)
 
+
 # wrangle habitat and environmental covariate info into wide format ----
 colnames(bruv_maxn) # the columns of the original data that we can choose covariates from
-bruv_covs <- select(bruv_maxn, c("sample", "depth")) # collate all covariates we're interested in
+bruv_covs <- select(bruv_maxn, c("sample", "depth", "location")) # collate all covariates we're interested in
 head(bruv_covs)
 
 # generate traits table including each species ----
@@ -39,7 +40,9 @@ bruv_species <- unique(bruv_species)
 bruv_traits <- alltrait[alltrait$scientific %in% bruv_species$scientific, ]
 
 # find species without traits :(
+bruv_notraits <- alltraits[!alltrait$scientific %in% bruv_species$scientific, ]
 
 
+# species without traits = spp and Pempheris tominagi
 # fix!
 
