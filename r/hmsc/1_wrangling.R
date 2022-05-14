@@ -18,11 +18,15 @@ bruv_maxn_w <- reshape2::dcast(bruv_maxn[,1:3],
                           sample ~ scientific, fun = sum)
 head(bruv_maxn_w)
 
+write.csv(bruv_maxn_w, "_bruv_maxn_wide.csv", row.names = FALSE)
+
 
 # wrangle habitat and environmental covariate info into wide format ----
 colnames(bruv_maxn) # the columns of the original data that we can choose covariates from
 bruv_covs <- select(bruv_maxn, c("sample", "depth", "location")) # collate all covariates we're interested in
 head(bruv_covs)
+
+write.csv(bruv_covs, "_bruv_covariates_wide.csv", row.names = FALSE)
 
 # generate traits table including each species ----
 # read in traits table
@@ -38,6 +42,9 @@ bruv_species <- unique(bruv_species)
 
 # subset traits data to just our species
 bruv_traits <- alltrait[alltrait$scientific %in% bruv_species$scientific, ]
+
+
+write.csv(bruv_traits, "_bruv_traits_my_species.csv", row.names = FALSE)
 
 # find species without traits :(
 bruv_notraits <- alltraits[!alltrait$scientific %in% bruv_species$scientific, ]
