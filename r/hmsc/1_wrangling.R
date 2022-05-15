@@ -18,7 +18,7 @@ bruv_maxn_w <- reshape2::dcast(bruv_maxn[,1:3],
                           sample ~ scientific, fun = sum)
 head(bruv_maxn_w)
 
-write.csv(bruv_maxn_w, "_bruv_maxn_wide.csv", row.names = FALSE)
+write.csv(bruv_maxn_w, "data/staging/2021-05_Abrolhos_bruv_maxn_wide.csv", row.names = FALSE)
 
 
 # wrangle habitat and environmental covariate info into wide format ----
@@ -26,7 +26,7 @@ colnames(bruv_maxn) # the columns of the original data that we can choose covari
 bruv_covs <- select(bruv_maxn, c("sample", "depth", "location")) # collate all covariates we're interested in
 head(bruv_covs)
 
-write.csv(bruv_covs, "_bruv_covariates_wide.csv", row.names = FALSE)
+write.csv(bruv_covs, "data/staging/2021-05_Abrolhos_bruv_covariates_wide.csv", row.names = FALSE)
 
 # generate traits table including each species ----
 # read in traits table
@@ -44,12 +44,24 @@ bruv_species <- unique(bruv_species)
 bruv_traits <- alltrait[alltrait$scientific %in% bruv_species$scientific, ]
 
 
-write.csv(bruv_traits, "_bruv_traits_my_species.csv", row.names = FALSE)
+write.csv(bruv_traits, "data/staging/2021-05_Abrolhos_bruv_traits_my_species.csv", row.names = FALSE)
 
 # find species without traits :(
+nrow(bruv_traits)
+
 bruv_notraits <- alltraits[!alltrait$scientific %in% bruv_species$scientific, ]
 
+nrow(bruv_notraits)
 
-# species without traits = spp and Pempheris tominagi
+
+
+## MOLLY FIXES
+# 1) species without traits = spp and Pempheris tominagi 
+# (best to estimate averages for these fish based on genus information?)
+#
+# 2) find species without traits script
+#
+# 3) 
+
 # fix!
 
