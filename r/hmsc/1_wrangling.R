@@ -60,8 +60,7 @@ nrow(bruv_notraits)
 # (best to estimate averages for these fish based on genus information?)
 #
 # 2) find species without traits script
-#
-# 3) 
+
 
 # fix!
 
