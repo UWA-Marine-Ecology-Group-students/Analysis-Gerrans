@@ -8,6 +8,7 @@
 
 library(dplyr)
 library(reshape2)
+library()
 
 #### wrangle maxn data into wide format ----
 
@@ -25,6 +26,19 @@ write.csv(bruv_maxn_w, "data/staging/2021-05_Abrolhos_bruv_maxn_wide.csv", row.n
 colnames(bruv_maxn) # the columns of the original data that we can choose covariates from
 bruv_covs <- select(bruv_maxn, c("sample", "depth", "location")) # collate all covariates we're interested in
 head(bruv_covs)
+
+bruv_covs <- unique(bruv_covs)
+head(bruv_covs)
+nrow(bruv_covs)
+
+bruv_covs <- bruv_covs[duplicated(bruv_covs$sample) == FALSE, ]
+
+head(bruv_covs)
+nrow(bruv_covs)
+
+#duplicate of depths at samples - figure it out
+# check depths against metadata for accurate depths
+
 
 write.csv(bruv_covs, "data/staging/2021-05_Abrolhos_bruv_covariates_wide.csv", row.names = FALSE)
 
