@@ -9,47 +9,52 @@
 library(Hmsc)
 set.seed(1)
 
-# read in all files
-bruv_covariates <- read.csv("data/staging/2021-05_Abrolhos_bruv_covariates_wide.csv", stringsAsFactors=TRUE)
-bruv_maxn <- read.csv("data/staging/2021-05_Abrolhos_bruv_maxn_wide.csv",  stringsAsFactors=TRUE)
-bruv_traits <- read.csv("data/staging/2021-05_Abrolhos_bruv_traits_my_species.csv", stringsAsFactors=TRUE)
+# read in data
+bruv_covs   <- readRDS("data/bruv_covariates_wide.rds")
+bruv_maxn   <- readRDS("data/bruv_maxn_wide.rds")
+bruv_traits <- readRDS("data/bruv_traits_my_species.rds")
 
-str(bruv_covariates)
+# set data structure for HMSC
+bruv_covs$sample   <- as.factor(bruv_covs$sample)
+bruv_covs$location <- as.factor(bruv_covs$location)
 
-nrow(bruv_covariates)
+# prepare our data for HMSC model structure
+XFormula    <- ~ depth + location
+TrFormula   <- ~ feeding.guild
+studyDesign <- data.frame(sample = as.factor(XData$sample))
 
-str(bruv_maxn)
-str(bruv_traits)
+# form the data structure required for HMSC modelling
+m <- Hmsc(Y = bruv_maxn, 
+          XData       = bruv_covs, 
+          XFormula    = XFormula, 
+          TrData      = bruv_traits,
+          TrFormula   = TrFormula,
+          distr       = "poisson", 
+          studyDesign = studyDesign)
 
-head(bruv_traits)
-head(bruv_maxn)
+# cross-check what we have set up before running the model
+head(m$X)
+head(m$XScaled)
+head(m$Tr)
+head(m$TrScaled)
 
-bruv_maxn <- bruv_maxn[ , colnames(bruv_maxn) %in% c(bruv_traits$scientific)]
+# we should use scaled versions of the bruv covariates - will chat about why sometime
 
-#prepare files for HMSC
+# setup and run the actual analysis
+model.directory <- "output/hmsc/model_data"
 
-Y = bruv_maxn[,-1]
-
-XData = data.frame(Sample = bruv_covariates$sample, depth=bruv_covariates$depth, location = bruv_covariates$location)
-
-XFormula = ~ depth + poly(location,degree = 2,raw = TRUE)
-
-TrData = data.frame(Scientific = bruv_traits$scientific, Marine_region=bruv_traits$marine.region, Feeding = bruv_traits$feeding.guild)
-rownames(traits) <- traits$Scientific
-
-TrFormula = ~Marine_region + Feeding
-
-studyDesign = data.frame(Sample = XData$Sample)
-
-
-
-# run HMSC
-
-m = Hmsc(Y=Y, XData = XData, XFormula=XFormula, TrData = TrData, TrFormula = TrFormula,
-         distr="probit", studyDesign = studyDesign)
-
-
-
+nChains = 2
+nParallel = 2 # optional setting of nParallel
+samples = 100
+for (thin in c(1,10)) #,100,1000))
+{
+  transient = 50*thin
+  m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
+                 nChains = nChains, initPar = "fixed effects",
+                 nParallel = nParallel)
+  filename=file.path(model.directory, paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+  save(m,file=filename)
+}
 
 
 
