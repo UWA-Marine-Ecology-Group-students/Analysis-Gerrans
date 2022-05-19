@@ -27,31 +27,25 @@ bruv_maxn_w <- bruv_maxn_w[, -1]                                                
 head(bruv_maxn_w)
 
 # wrangle habitat and environmental covariate info into wide format ----
-<<<<<<< HEAD
-colnames(bruv_maxn) # the columns of the original data that we can choose covariates from
-bruv_covs <- select(bruv_maxn, c("sample", "latitude", "longitude",
-                                 "depth", "location"))                          # collate all covariates we're interested in
-=======
 bruv_meta <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
-
-colnames(bruv_meta) # the columns of the original data that we can choose covariates from
-bruv_covs <- select(bruv_meta, c("Sample", "Depth", "Location")) # collate all covariates we're interested in
->>>>>>> fcc48933f81e44a986fb007503f784417fbc6f87
+colnames(bruv_meta)                                                             # the columns of the original data that we can choose covariates from
+bruv_covs <- select(bruv_meta, c("Sample", "Latitude", "Longitude", 
+                                 "Depth", "Location"))                          # collate all covariates we're interested in
 head(bruv_covs)
 
 # collapse rows to make it one row per sample (match with bruv_maxn)
 bruv_covs <- unique(bruv_covs)
 nrow(bruv_covs)
-<<<<<<< HEAD
-# duplicate of depths at samples - figure it out
-# check depths against metadata for accurate depths
-# for now collapse further by excluding any samples with duplicate records
-bruv_covs <- bruv_covs[duplicated(bruv_covs$sample) == FALSE, ]
-=======
+nrow(bruv_maxn_w)
+# there are now more maxn rows than there are metadata - maybe we didn't complete a few drops?
 
-#bruv_covs <- bruv_covs[duplicated(bruv_covs$sample) == FALSE, ]
+# for now remove those extra drop records from the covariates
+bruv_covs$Sample <- gsub("\\.", "_", bruv_covs$Sample)                          # the periods were causing issues later i think
+bruv_covs <- bruv_covs[bruv_covs$Sample %in% rownames(bruv_maxn_w), ]
 
->>>>>>> fcc48933f81e44a986fb007503f784417fbc6f87
+# finally fix column names
+colnames(bruv_covs) <- tolower(colnames(bruv_covs))
+
 head(bruv_covs)
 nrow(bruv_covs) == nrow(bruv_maxn_w)                                            # do row numbers match in maxn and covariates?
 
