@@ -27,18 +27,31 @@ bruv_maxn_w <- bruv_maxn_w[, -1]                                                
 head(bruv_maxn_w)
 
 # wrangle habitat and environmental covariate info into wide format ----
+<<<<<<< HEAD
 colnames(bruv_maxn) # the columns of the original data that we can choose covariates from
 bruv_covs <- select(bruv_maxn, c("sample", "latitude", "longitude",
                                  "depth", "location"))                          # collate all covariates we're interested in
+=======
+bruv_meta <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
+
+colnames(bruv_meta) # the columns of the original data that we can choose covariates from
+bruv_covs <- select(bruv_meta, c("Sample", "Depth", "Location")) # collate all covariates we're interested in
+>>>>>>> fcc48933f81e44a986fb007503f784417fbc6f87
 head(bruv_covs)
 
 # collapse rows to make it one row per sample (match with bruv_maxn)
 bruv_covs <- unique(bruv_covs)
 nrow(bruv_covs)
+<<<<<<< HEAD
 # duplicate of depths at samples - figure it out
 # check depths against metadata for accurate depths
 # for now collapse further by excluding any samples with duplicate records
 bruv_covs <- bruv_covs[duplicated(bruv_covs$sample) == FALSE, ]
+=======
+
+#bruv_covs <- bruv_covs[duplicated(bruv_covs$sample) == FALSE, ]
+
+>>>>>>> fcc48933f81e44a986fb007503f784417fbc6f87
 head(bruv_covs)
 nrow(bruv_covs) == nrow(bruv_maxn_w)                                            # do row numbers match in maxn and covariates?
 
@@ -93,7 +106,6 @@ bruv_notrait
 ## MOLLY FIXES
 # 1) species without traits = spp and Pempheris tominagi 
 # (best to estimate averages for these fish based on genus information?)
-#
 # 2) find species without traits script
 
 
