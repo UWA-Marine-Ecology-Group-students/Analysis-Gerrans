@@ -23,15 +23,17 @@ write.csv(bruv_maxn_w, "data/staging/2021-05_Abrolhos_bruv_maxn_wide.csv", row.n
 
 
 # wrangle habitat and environmental covariate info into wide format ----
-colnames(bruv_maxn) # the columns of the original data that we can choose covariates from
-bruv_covs <- select(bruv_maxn, c("sample", "depth", "location")) # collate all covariates we're interested in
+bruv_meta <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
+
+colnames(bruv_meta) # the columns of the original data that we can choose covariates from
+bruv_covs <- select(bruv_meta, c("Sample", "Depth", "Location")) # collate all covariates we're interested in
 head(bruv_covs)
 
 bruv_covs <- unique(bruv_covs)
 head(bruv_covs)
 nrow(bruv_covs)
 
-bruv_covs <- bruv_covs[duplicated(bruv_covs$sample) == FALSE, ]
+#bruv_covs <- bruv_covs[duplicated(bruv_covs$sample) == FALSE, ]
 
 head(bruv_covs)
 nrow(bruv_covs)
@@ -72,7 +74,6 @@ nrow(bruv_notraits)
 ## MOLLY FIXES
 # 1) species without traits = spp and Pempheris tominagi 
 # (best to estimate averages for these fish based on genus information?)
-#
 # 2) find species without traits script
 
 
