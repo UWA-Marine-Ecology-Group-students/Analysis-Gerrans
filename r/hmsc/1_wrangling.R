@@ -21,12 +21,13 @@ head(bruv_maxn$genus_species)
 bruv_maxn_w  <- reshape2::dcast(bruv_maxn[, c(1, 3, 20)], 
                                 sample ~ genus_species, 
                                 fun = sum, value.var = "maxn")
-rownames(bruv_maxn_w) <- bruv_maxn_w$sample                                     # make sample ids row names
+rownames(bruv_maxn_w) <- bruv_maxn_w$sample                         # make sample ids row names
 rownames(bruv_maxn_w) <- gsub("\\.", "_", bruv_maxn_w$sample)
-bruv_maxn_w <- bruv_maxn_w[, -1]                                                # drop sample column
+bruv_maxn_w <- bruv_maxn_w[, -1]                                    # drop sample column
 head(bruv_maxn_w)
 
-# wrangle habitat and environmental covariate info into wide format ----
+#### wrangle habitat and environmental covariate info into wide format ----
+
 bruv_meta <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
 colnames(bruv_meta)                                                             # the columns of the original data that we can choose covariates from
 bruv_covs <- select(bruv_meta, c("Sample", "Latitude", "Longitude", 
@@ -49,7 +50,8 @@ colnames(bruv_covs) <- tolower(colnames(bruv_covs))
 head(bruv_covs)
 nrow(bruv_covs) == nrow(bruv_maxn_w)                                            # do row numbers match in maxn and covariates?
 
-# generate traits table including each species ----
+#### generate traits table including each species ----
+
 # read in traits table
 alltrait <- read.csv("data/traits/life_history.csv")
 colnames(alltrait)
@@ -59,10 +61,20 @@ bruv_species        <- colnames(bruv_maxn_w)                                    
 alltrait$scientific <- gsub(" ", "_", alltrait$scientific)                      # adding . to species names for consistency
 bruv_traits         <- alltrait[alltrait$scientific %in% bruv_species, ]
 
-# how many species are wemissing traits for?
+# how many species are we missing traits for?
 length(bruv_species) - nrow(bruv_traits)
 
-# reduce traits data to just our covariates of interest - use ::summary to choose traits with most data
+
+# look at number of maxn for individual species and see if there are a lot of them or not
+# look at list of species without traits, 16 spp and pempheris tomanagi
+# see if similar traits across genus that can be used
+# use any of species names thought it was but couldnt be 100% sure 
+# eg chromis westaustralis
+# CHAT TO TIM & KINGSLEY
+
+
+# reduce traits data to just our covariates of interest - use ::summary to choose 
+# traits with most data
 summary(bruv_traits)
 interesting_traits <- c("scientific", "feeding.guild", "fb.vulnerability")
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
@@ -93,14 +105,14 @@ saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
 
 
 # list species without traits :(
-bruv_notrait <- bruv_species[(bruv_species %in% bruv_traits$scientific) == FALSE]
+bruv_species_traits <- rownames(bruv_traits)
+
+bruv_notrait <- bruv_species[(bruv_species %in% bruv_species_traits) == FALSE]
 length(bruv_notrait)
 bruv_notrait
 
-## MOLLY FIXES
-# 1) species without traits = spp and Pempheris tominagi 
-# (best to estimate averages for these fish based on genus information?)
-# 2) find species without traits script
+
+
 
 
 # fix!

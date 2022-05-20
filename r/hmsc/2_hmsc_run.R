@@ -19,6 +19,9 @@ bruv_covs$sample   <- as.factor(bruv_covs$sample)
 bruv_covs$location <- as.factor(bruv_covs$location)
 
 # prepare our data for HMSC model structure
+Y <- bruv_maxn
+XData <- bruv_covs
+TrData <- bruv_traits
 XFormula    <- ~ depth + location
 TrFormula   <- ~ feeding.guild
 studyDesign <- data.frame(sample = as.factor(XData$sample))
@@ -43,10 +46,42 @@ head(m$TrScaled)
 # setup and run the actual analysis
 model.directory <- "output/hmsc/model_data"
 
+
+# thin 10
 nChains = 2
 nParallel = 2 # optional setting of nParallel
 samples = 100
 for (thin in c(1,10)) #,100,1000))
+{
+  transient = 50*thin
+  m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
+                 nChains = nChains, initPar = "fixed effects",
+                 nParallel = nParallel)
+  filename=file.path(model.directory, paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+  save(m,file=filename)
+}
+
+
+#thin 100
+nChains = 2
+nParallel = 2 # optional setting of nParallel
+samples = 100
+for (thin in c(1,100)) #,100,1000))
+{
+  transient = 50*thin
+  m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
+                 nChains = nChains, initPar = "fixed effects",
+                 nParallel = nParallel)
+  filename=file.path(model.directory, paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+  save(m,file=filename)
+}
+
+
+#thin 1000
+nChains = 2
+nParallel = 2 # optional setting of nParallel
+samples = 100
+for (thin in c(1,100)) #,100,1000))
 {
   transient = 50*thin
   m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
