@@ -81,7 +81,7 @@ for (thin in c(1,100)) #,100,1000))
 nChains = 2
 nParallel = 2 # optional setting of nParallel
 samples = 100
-for (thin in c(1,100)) #,100,1000))
+for (thin in c(1,1000)) #,100,1000))
 {
   transient = 50*thin
   m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
