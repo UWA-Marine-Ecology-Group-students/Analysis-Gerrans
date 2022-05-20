@@ -41,7 +41,7 @@ download.dir <- paste(getwd(), "/data/raw/em export", sep = "/")
 # See the user manual: https://globalarchivemanual.github.io/ for the correct format
 
 # For csv file ----
-metadata <- ga.list.files("_Metadata.csv") %>% # list all files ending in "_Metadata.csv"
+metadata <- ga.list.files("BRUVs_Metadata.csv") %>% # list all files ending in "_Metadata.csv"
   purrr::map_df(~ga.read.files_em.csv(.)) %>% # combine into dataframe
   dplyr::mutate(campaignid = study) %>%
   dplyr::select(campaignid,sample,latitude,longitude,date,time,location,status,site,depth,observer,successful.count,successful.length) %>% # This line ONLY keep the 15 columns listed. Remove or turn this line off to keep all columns (Turn off with a # at the front).
