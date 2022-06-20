@@ -146,6 +146,34 @@ tmp = mpost$Omega[[1]]
 z = ncol(tmp[[1]])
 sel = sample(z, size=200) 
 
+##### new draft -----
+par(mar = rep(2,4))
+plot(mpost$Beta[,1:5]) #enviro covariates
+plot(mpost$Gamma[,1:5]) #traits covariates
+
+gelman.diag(mpost$Beta[,1:50]) #establish convergence
+
+postBeta = getPostEstimate(m,parName = "Beta")
+par(mar = c(5,11,2.5,0))
+plotBeta(m, 
+         post = postBeta,
+         plotTree = F,
+         spNamesNumbers = c(T,F))
+
+plotBeta(m, 
+         post = postBeta,
+         param = "Mean",
+         plotTree = F,
+         spNamesNumbers = c(T,F))
+
+postGamma = getPostEstimate(m,parName = "Gamma")
+plotGamma(m, post = postGamma, supportLevel = 0.2)
+
+VP = computeVariancePartitioning(m)
+
+plotVariancePartitioning(m, VP = VP, las =2, horiz = F)
+
+##### end new draft -------
 
 # Here we take the subset of species pairs. 
 # We loop over the 2 MCMC chains.
