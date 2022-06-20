@@ -170,8 +170,13 @@ postGamma = getPostEstimate(m,parName = "Gamma")
 plotGamma(m, post = postGamma, supportLevel = 0.2)
 
 VP = computeVariancePartitioning(m)
-
 plotVariancePartitioning(m, VP = VP, las =2, horiz = F)
+
+Gradient = constructGradient(m, 
+                             focalVariable = "logdiam", 
+                             non.focalVariables = "", 
+                             ngrid = 20)
+constr
 
 ##### end new draft -------
 
