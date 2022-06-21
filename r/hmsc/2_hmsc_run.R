@@ -21,12 +21,15 @@ bruv_covs$sample   <- as.factor(bruv_covs$sample)
 bruv_covs$location <- as.factor(bruv_covs$location)
 
 # prepare our data for HMSC model structure
-Y <- bruv_maxn
-XData <- bruv_covs
-TrData <- bruv_traits
+Y           <- bruv_maxn
+XData       <- bruv_covs
+TrData      <- bruv_traits
 XFormula    <- ~ depth + location
 TrFormula   <- ~ feeding.guild
-studyDesign <- data.frame(sample = as.factor(XData$sample))
+studyDesign <- data.frame(sample = as.factor(XData$sample),
+                          location = as.factor(XData$location)) # moved location to study design area (can consider moving back)
+rL1 <- HmscRandomLevel(units = levels(studyDesign$sample))
+rL2 <-  HmscRandomLevel(units = levels(studyDesign$location))   # added study design as nested random factor
 
 # form the data structure required for HMSC modelling
 m <- Hmsc(Y = bruv_maxn, 
@@ -46,110 +49,83 @@ head(m$TrScaled)
 # we should use scaled versions of the bruv covariates - will chat about why sometime
 
 # setup and run the actual analysis
-model.directory <- "output/hmsc/model_data"
-
+model.directory <- "output/hmsc_model_data"
 
 # thin 10
-nChains = 2
-nParallel = 2 # optional setting of nParallel
-samples = 100
-for (thin in c(1,10)) #,100,1000))
-{
-  transient = 50*thin
-  m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
-                 nChains = nChains, initPar = "fixed effects",
-                 nParallel = nParallel)
-  filename=file.path(model.directory, paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
-  save(m,file=filename)
-}
-
-
-#thin 100
-nChains = 2
-nParallel = 2 # optional setting of nParallel
-samples = 100
-for (thin in c(1,100)) #,100,1000))
-{
-  transient = 50*thin
-  m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
-                 nChains = nChains, initPar = "fixed effects",
-                 nParallel = nParallel)
-  filename=file.path(model.directory, paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
-  save(m,file=filename)
-}
-
-
-#thin 1000
-nChains = 2
-nParallel = 2 # optional setting of nParallel
-samples = 100
-for (thin in c(1,1000)) #,100,1000))
-{
-  transient = 50*thin
-  m = sampleMcmc(m, thin = thin, samples = samples, transient = transient,
-                 nChains = nChains, initPar = "fixed effects",
-                 nParallel = nParallel)
-  filename=file.path(model.directory, paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
-  save(m,file=filename)
+nChains   <- 4
+nParallel <- 4
+samples   <- 1000
+for (thin in c(1,10)){
+  transient <- 50*thin
+  m <- sampleMcmc(m, thin = thin, samples = samples, 
+                  transient = transient, nChains = nChains, 
+                  initPar = "fixed effects", nParallel = nParallel)
+  filename <- file.path(model.directory, 
+                       paste0("model_chains_", as.character(nChains), 
+                              "_samples_", as.character(samples), 
+                              "_thin_", as.character(thin), sep = ""))
+  save(m, file = filename)
 }
 
 ######## Evaluating convergence ----
-
 set.seed(1)
 
-#new writtten code 
-list.files("output/hmsc/model_data")
+#new written code 
+list.files("output/hmsc_model_data")
 
 #thin 1
-nChains = 2
-samples = 100
-thin = 1 
-filename=file.path("output/hmsc/model_data", paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+nChains = 4
+samples = 1000
+thin = 1
+filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
 #thin 10
-nChains = 2
-samples = 100
+nChains = 4
+samples = 1000
 thin = 10
-filename=file.path("output/hmsc/model_data", paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
-load(filename)
-
-#thin 100
-nChains = 2
-samples = 100
-thin = 100
-filename=file.path("output/hmsc/model_data", paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
-load(filename)
-
-#thin 1000
-nChains = 2
-samples = 100
-thin = 1000
-filename=file.path("output/hmsc/model_data", paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
 # We restrict here the study of MCMC convergence to the examination of 
-# the potential scale reduction factor
-# of the beta parameters and the Omega parameters. For the latter, we 
-# take a subsample of 200 randomly selected
-# species pairs to avoid excessive computations.
+# the potential scale reduction factor of the beta parameters.
 
 mpost = convertToCodaObject(m, spNamesNumbers = c(T,F), 
                             covNamesNumbers = c(T,F))
 str(mpost)
 
 psrf.beta = gelman.diag(mpost$Beta,multivariate=FALSE)$psrf
-
 psrf.beta
 
-tmp = mpost$Omega[[1]]
-z = ncol(tmp[[1]])
-sel = sample(z, size=200) 
 
-##### new draft -----
-par(mar = rep(2,4))
-plot(mpost$Beta[,1:5]) #enviro covariates
-plot(mpost$Gamma[,1:5]) #traits covariates
+# Visual chain tests for different coefficients of interest 
+
+# Beta estimates are the influence of environment on species
+plot(mpost$Beta)
+
+# if you review these you'll see that some species resolve well
+# that is to say that the line of best fit is mostly flat and 
+# the y-value range of the fuzzy line is small - the hairy caterpillar!
+# eg lethrinus minatus, chrysophrys auratus
+# but some others wander about (not flat) or even trend off course
+# this probably comes down to how many observations we have
+
+
+# use the gelman diagnostic to objectively review convergence
+gelman.diag(mpost$Beta[,1:50])
+# ideally values are close to 1 - ours look fairly good really
+
+# check out the estimate values themselves
+postBeta = getPostEstimate(m, parName = "Beta")
+par(mar=c(5,11,2.5,0))
+plotBeta(m,
+         post = postBeta, 
+         plotTree = F,
+         spNamesNumbers = c(T,F))
+
+
+
+plot(mpost$Gamma) #traits covariates
 
 gelman.diag(mpost$Beta[,1:50]) #establish convergence
 
