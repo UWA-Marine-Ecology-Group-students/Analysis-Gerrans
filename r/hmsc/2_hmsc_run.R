@@ -172,11 +172,55 @@ plotGamma(m, post = postGamma, supportLevel = 0.2)
 VP = computeVariancePartitioning(m)
 plotVariancePartitioning(m, VP = VP, las =2, horiz = F)
 
-Gradient = constructGradient(m, 
-                             focalVariable = "logdiam", 
-                             non.focalVariables = "", 
-                             ngrid = 20)
-constr
+#gradient depth
+Gradientd = constructGradient(m,focalVariable = "depth")
+
+head(Gradientd$XDataNew)
+
+predY = predict(m,
+                XData = Gradientd$XDataNew, 
+                studyDesign = Gradientd$studyDesignNew,
+                ranLevels = Gradientd$rLNew,
+                expected = TRUE)
+predY = predict(m, Gradient=Gradientd, expected = TRUE)
+
+
+plotGradient(m,
+             Gradientd,
+             pred=predY,
+             measure="S",
+             showData = TRUE)
+
+plotGradient(m, Gradientd, pred=predY, measure="Y", index = 50, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradientd, pred=predY, measure="S", showData = TRUE, jigger = 0.1)
+plotGradient(m, Gradientd, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
+plotGradient(m, Gradientd, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
+
+
+#gradient location
+Gradientl = constructGradient(m,focalVariable = "location")
+
+head(Gradientl$XDataNew)
+
+predY = predict(m,
+                XData = Gradientl$XDataNew, 
+                studyDesign = Gradientl$studyDesignNew,
+                ranLevels = Gradientl$rLNew,
+                expected = TRUE)
+predY = predict(m, Gradient=Gradientl, expected = TRUE)
+
+
+plotGradient(m,
+             Gradientl,
+             pred=predY,
+             measure="S",
+             showData = TRUE)
+
+plotGradient(m, Gradientl, pred=predY, measure="Y", index = 17, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradientl, pred=predY, measure="S", showData = TRUE, jigger = 0.1)
+plotGradient(m, Gradientl, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
+plotGradient(m, Gradientl, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
+
 
 ##### end new draft -------
 
