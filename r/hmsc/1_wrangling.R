@@ -34,6 +34,11 @@ bruv_covs <- select(bruv_meta, c("Sample", "Latitude", "Longitude",
                                  "Depth", "Location"))                          # collate all covariates we're interested in
 head(bruv_covs)
 
+bruv_habitat_broad <- read.csv("data/tidy/2021-05_Abrolhos_BRUVs_random-points_percent-cover_broad.habitat.csv")
+bruv_habitat_detailed <- read.csv("data/tidy/2021-05_Abrolhos_BRUVs_random-points_percent-cover_broad.habitat.csv")
+
+#add habitat to BRUV covar
+
 # collapse rows to make it one row per sample (match with bruv_maxn)
 bruv_covs <- unique(bruv_covs)
 nrow(bruv_covs)
@@ -56,6 +61,25 @@ nrow(bruv_covs) == nrow(bruv_maxn_w)                                            
 alltrait <- read.csv("data/traits/life_history.csv")
 colnames(alltrait)
 
+#read in body length
+bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv")
+
+#read in body mass
+bodymass <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
+
+# clean up/remove species from body data if they have NA in any measurement info
+bodylength <- na.omit(bodylength)
+bodymass <- na.omit(bodymass)
+
+
+
+
+##### Need to get AVERAGE measurements per fish
+#### need to assimilate body measurments into bruv_traits file
+
+
+
+
 # reduce traits table to just our species
 bruv_species        <- colnames(bruv_maxn_w)                                    # species from maxn column names
 alltrait$scientific <- gsub(" ", "_", alltrait$scientific)                      # adding . to species names for consistency
@@ -63,21 +87,35 @@ bruv_traits         <- alltrait[alltrait$scientific %in% bruv_species, ]
 
 # how many species are we missing traits for?
 length(bruv_species) - nrow(bruv_traits)
+#17 = 16 spp and pempheris tomanagi
 
 
 # look at number of maxn for individual species and see if there are a lot of them or not
-# look at list of species without traits, 16 spp and pempheris tomanagi
 # see if similar traits across genus that can be used
 # use any of species names thought it was but couldnt be 100% sure 
 # eg chromis westaustralis
-# CHAT TO TIM & KINGSLEY
 
 
 # reduce traits data to just our covariates of interest - use ::summary to choose 
-# traits with most data
+# possible traits to include,
+###### feeding guild, fb.vulnerability, iucn ranking, body mass
+
 summary(bruv_traits)
-interesting_traits <- c("scientific", "feeding.guild", "fb.vulnerability")
+interesting_traits <- c("scientific", 
+                        "feeding.guild", 
+                        "fb.vulnerability", 
+                        "local.region")
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
+
+# overall traits table for all species but just our traits
+
+alltrait_sub1 <- subset(alltrait, select = "scientific")
+alltrait_sub2 <- subset(alltrait, select = "feeding.guild")
+alltrait_sub3 <- subset(alltrait, select = "fb.vulnerability")
+alltrait_sub4 <- subset(alltrait, select = "local.region")
+
+alltrait_sub0 <-cbind(alltrait_sub1, alltrait_sub2, alltrait_sub3, alltrait_sub4)
+
 
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
@@ -97,6 +135,8 @@ bruv_traits <- bruv_traits[ , -1]
 # drop bruv maxn info for species that are lacking any traits
 bruv_maxn_w <- bruv_maxn_w[ , colnames(bruv_maxn_w) %in% c(rownames(bruv_traits))]
 dim(bruv_maxn_w)
+
+
 
 # write to RDS to preserve row names
 saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
@@ -119,3 +159,10 @@ bruv_notrait
 
 # clear environment
 rm(list=ls())
+
+#### wrangle spatial context data -----
+
+str(bruv_covs)
+
+bruvs_spatial <- subset(bruv_covs, select =sample:longitude)
+
