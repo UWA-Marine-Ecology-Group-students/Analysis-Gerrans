@@ -28,19 +28,34 @@ head(bruv_maxn_w)
 
 #### wrangle habitat and environmental covariate info into wide format ----
 
-bruv_meta <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
+bruv_meta    <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
+bruv_habitat <- read.csv("data/tidy/2021-05_Abrolhos_BRUVs_random-points_percent-cover_broad.habitat.csv")
 colnames(bruv_meta)                                                             # the columns of the original data that we can choose covariates from
 bruv_covs <- select(bruv_meta, c("Sample", "Latitude", "Longitude", 
                                  "Depth", "Location"))                          # collate all covariates we're interested in
+bruv_covs <- unique(bruv_covs)                                                  # collapse rows to make it one row per sample (match with bruv_maxn)
 head(bruv_covs)
 
-bruv_habitat_broad <- read.csv("data/tidy/2021-05_Abrolhos_BRUVs_random-points_percent-cover_broad.habitat.csv")
-bruv_habitat_detailed <- read.csv("data/tidy/2021-05_Abrolhos_BRUVs_random-points_percent-cover_broad.habitat.csv")
+# clean habitat data
+head(bruv_habitat)
+colnames(bruv_habitat)    <- gsub("broad.", "", colnames(bruv_habitat))         # shorten column names
+bruv_habitat$spongegarden <- rowSums(bruv_habitat[, colnames(bruv_habitat) %in% 
+                                                     c("ascidians", "bryozoa", 
+                                                       "hydroids", "sponges",
+                                                       "invertebrate.complex", 
+                                                       "octocoral.black")])     # collapse invertebrate reef tags
 
-#add habitat to BRUV covar
+# add habitat to BRUV covars
+head(bruv_habitat)
+bruv_covs <- merge(bruv_covs, bruv_habitat[, colnames(bruv_habitat) %in%
+                                             c("sample", "consolidated",
+                                               "macroalgae", "unconsolidated",
+                                               "spongegarden", "mean.relief")], 
+                   by.x = "Sample", by.y = "sample")
+bruv_covs[, 6:10] <- round(bruv_covs[, 6:10], 2)
+head(bruv_covs)
 
-# collapse rows to make it one row per sample (match with bruv_maxn)
-bruv_covs <- unique(bruv_covs)
+# check dimensions against drops
 nrow(bruv_covs)
 nrow(bruv_maxn_w)
 # there are now more maxn rows than there are metadata - maybe we didn't complete a few drops?
