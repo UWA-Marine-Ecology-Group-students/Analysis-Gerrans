@@ -57,30 +57,27 @@ nrow(bruv_covs) == nrow(bruv_maxn_w)                                            
 
 #### generate traits table including each species ----
 
-# read in traits table
-alltrait <- read.csv("data/traits/life_history.csv")
-colnames(alltrait)
+# read in traits table, body length and mass
+alltrait   <- read.csv("data/traits/life_history.csv")
+# bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv") # both measures appear in mass table
+bodymass   <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
 
-#read in body length
-bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv")
+# clean up/remove species from length/mass data if they have NA in any measurement info
+# bodylength <- na.omit(bodylength)
+bodymass   <- na.omit(bodymass)
 
-#read in body mass
-bodymass <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
+# calculate mean body measures per fish
+bodydim <- summarise(group_by(bodymass, family, genus, species),
+                     meanlength = sum(length)/sum(number),
+                     meanmass = sum(mass.g)/sum(number))
+bodydim$scientific  <- interaction(bodydim$genus, bodydim$species, sep = "_")
+head(bodydim)
 
-# clean up/remove species from body data if they have NA in any measurement info
-bodylength <- na.omit(bodylength)
-bodymass <- na.omit(bodymass)
+# check correlation among length and mass
+plot(log(bodydim$meanlength), log(bodydim$meanmass))
+cor(bodydim$meanlength, bodydim$meanmass) 
 
-
-
-
-##### Need to get AVERAGE measurements per fish
-#### need to assimilate body measurments into bruv_traits file
-
-
-
-
-# reduce traits table to just our species
+# reduce traits table from entire sheet to just our species
 bruv_species        <- colnames(bruv_maxn_w)                                    # species from maxn column names
 alltrait$scientific <- gsub(" ", "_", alltrait$scientific)                      # adding . to species names for consistency
 bruv_traits         <- alltrait[alltrait$scientific %in% bruv_species, ]
@@ -114,8 +111,7 @@ alltrait_sub2 <- subset(alltrait, select = "feeding.guild")
 alltrait_sub3 <- subset(alltrait, select = "fb.vulnerability")
 alltrait_sub4 <- subset(alltrait, select = "local.region")
 
-alltrait_sub0 <-cbind(alltrait_sub1, alltrait_sub2, alltrait_sub3, alltrait_sub4)
-
+alltrait_sub0 <- cbind(alltrait_sub1, alltrait_sub2, alltrait_sub3, alltrait_sub4)
 
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
@@ -127,6 +123,11 @@ bruv_traits$feeding.guild <- sapply(bruv_traits$feeding.guild,
                FUN = function(x)paste(unique(unlist(strsplit(x, "/"))), 
                                       collapse = " "))                          # remove punctuation and duplicates
 unique(bruv_traits$feeding.guild)
+
+# add body data columns
+bruv_traits <- merge(bruv_traits, bodydim[, c(4:6)], by = 'scientific')
+head(bruv_traits)
+summary(bruv_traits)
 
 # make species names row names
 rownames(bruv_traits) <- bruv_traits$scientific
