@@ -26,6 +26,7 @@ rownames(bruv_maxn_w) <- gsub("\\.", "_", bruv_maxn_w$sample)
 bruv_maxn_w <- bruv_maxn_w[, -1]                                    # drop sample column
 head(bruv_maxn_w)
 
+
 #### wrangle habitat and environmental covariate info into wide format ----
 
 bruv_meta    <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
@@ -69,6 +70,7 @@ colnames(bruv_covs) <- tolower(colnames(bruv_covs))
 
 head(bruv_covs)
 nrow(bruv_covs) == nrow(bruv_maxn_w)                                            # do row numbers match in maxn and covariates?
+
 
 #### generate traits table including each species ----
 
@@ -160,6 +162,7 @@ length(bruv_notrait)
 bruv_notrait
 
 
+
 #### wrangle spatial context data -----
 
 str(bruv_covs)
@@ -167,14 +170,14 @@ str(bruv_covs)
 bruv_spatial <- subset(bruv_covs, select =sample:longitude)
 
 
+
 #### write RDS to preserve row names ------
 
-# write to RDS to preserve row names
+# write to RDS to preserve row names 
 saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
 saveRDS(bruv_covs,   "data/bruv_covariates_wide.rds")
 saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
 saveRDS(bruv_spatial, "data/bruv_spatial.rds")
-
 
 
 # fix!
