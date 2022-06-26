@@ -10,6 +10,7 @@ library(dplyr)
 library(reshape2)
 
 #### wrangle maxn data into wide format ----
+
 # read in maxn data
 bruv_maxn <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.maxn.csv")
 colnames(bruv_maxn)
@@ -162,13 +163,11 @@ length(bruv_notrait)
 bruv_notrait
 
 
-
 #### wrangle spatial context data -----
 
 str(bruv_covs)
 
 bruv_spatial <- subset(bruv_covs, select =sample:longitude)
-
 
 
 #### write RDS to preserve row names ------
