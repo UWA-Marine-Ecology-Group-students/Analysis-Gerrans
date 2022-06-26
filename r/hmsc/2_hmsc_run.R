@@ -15,6 +15,7 @@ set.seed(1)
 bruv_covs   <- readRDS("data/bruv_covariates_wide.rds")
 bruv_maxn   <- readRDS("data/bruv_maxn_wide.rds")
 bruv_traits <- readRDS("data/bruv_traits_my_species.rds")
+bruv_spatial <- readRDS("data/bruv_spatial.rds")
 
 # set data structure for HMSC
 bruv_covs$sample   <- as.factor(bruv_covs$sample)
@@ -73,12 +74,6 @@ set.seed(1)
 #new written code 
 list.files("output/hmsc_model_data")
 
-#thin 1
-nChains = 4
-samples = 1000
-thin = 1
-filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
-load(filename)
 
 #thin 10
 nChains = 4
@@ -86,6 +81,14 @@ samples = 1000
 thin = 10
 filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
+
+#thin 100
+nChains = 4
+samples = 1000
+thin = 100
+filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+load(filename)
+
 
 # We restrict here the study of MCMC convergence to the examination of 
 # the potential scale reduction factor of the beta parameters.

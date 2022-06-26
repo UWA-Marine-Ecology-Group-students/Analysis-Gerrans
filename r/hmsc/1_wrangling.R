@@ -10,6 +10,7 @@ library(dplyr)
 library(reshape2)
 
 #### wrangle maxn data into wide format ----
+
 # read in maxn data
 bruv_maxn <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.maxn.csv")
 colnames(bruv_maxn)
@@ -116,30 +117,26 @@ length(bruv_species) - nrow(bruv_traits)
 
 summary(bruv_traits)
 interesting_traits <- c("scientific", 
-                        "feeding.guild", 
-                        "fb.vulnerability", 
-                        "local.region")
+                        "fb.vulnerability")
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
 
 # overall traits table for all species but just our traits
 
 alltrait_sub1 <- subset(alltrait, select = "scientific")
-alltrait_sub2 <- subset(alltrait, select = "feeding.guild")
 alltrait_sub3 <- subset(alltrait, select = "fb.vulnerability")
-alltrait_sub4 <- subset(alltrait, select = "local.region")
 
-alltrait_sub0 <- cbind(alltrait_sub1, alltrait_sub2, alltrait_sub3, alltrait_sub4)
+alltrait_sub0 <- cbind(alltrait_sub1, alltrait_sub3)
 
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
 head(bruv_traits)
 
 # clean traits data itself
-bruv_traits$feeding.guild <- tolower(bruv_traits$feeding.guild)                 # make all lowercase
-bruv_traits$feeding.guild <- sapply(bruv_traits$feeding.guild, 
-               FUN = function(x)paste(unique(unlist(strsplit(x, "/"))), 
-                                      collapse = " "))                          # remove punctuation and duplicates
-unique(bruv_traits$feeding.guild)
+#bruv_traits$feeding.guild <- tolower(bruv_traits$feeding.guild)                 # make all lowercase
+#bruv_traits$feeding.guild <- sapply(bruv_traits$feeding.guild, 
+              # FUN = function(x)paste(unique(unlist(strsplit(x, "/"))), 
+                                      #collapse = " "))                          # remove punctuation and duplicates
+#unique(bruv_traits$feeding.guild)
 
 # add body data columns
 bruv_traits <- merge(bruv_traits, bodydim[, c(4:6)], by = 'scientific')
@@ -162,13 +159,11 @@ length(bruv_notrait)
 bruv_notrait
 
 
-
 #### wrangle spatial context data -----
 
 str(bruv_covs)
 
 bruv_spatial <- subset(bruv_covs, select =sample:longitude)
-
 
 
 #### write RDS to preserve row names ------
