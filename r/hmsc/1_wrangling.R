@@ -152,14 +152,6 @@ bruv_traits <- bruv_traits[ , -1]
 bruv_maxn_w <- bruv_maxn_w[ , colnames(bruv_maxn_w) %in% c(rownames(bruv_traits))]
 dim(bruv_maxn_w)
 
-
-
-# write to RDS to preserve row names
-saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
-saveRDS(bruv_covs,   "data/bruv_covariates_wide.rds")
-saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
-
-
 # list species without traits :(
 bruv_species_traits <- rownames(bruv_traits)
 
@@ -168,6 +160,20 @@ length(bruv_notrait)
 bruv_notrait
 
 
+#### wrangle spatial context data -----
+
+str(bruv_covs)
+
+bruv_spatial <- subset(bruv_covs, select =sample:longitude)
+
+
+#### write RDS to preserve row names ------
+
+# write to RDS to preserve row names
+saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
+saveRDS(bruv_covs,   "data/bruv_covariates_wide.rds")
+saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
+saveRDS(bruv_spatial, "data/bruv_spatial.rds")
 
 
 
@@ -175,10 +181,3 @@ bruv_notrait
 
 # clear environment
 rm(list=ls())
-
-#### wrangle spatial context data -----
-
-str(bruv_covs)
-
-bruvs_spatial <- subset(bruv_covs, select =sample:longitude)
-
