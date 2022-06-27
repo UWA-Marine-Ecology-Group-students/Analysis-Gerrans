@@ -76,7 +76,7 @@ nrow(bruv_covs) == nrow(bruv_maxn_w)                                            
 #### generate traits table including each species ----
 
 # read in traits table, body length and mass
-alltrait   <- read.csv("data/traits/life_history.csv")
+alltrait   <- read.csv("data/traits/Australia.life.history - australia.life.history.csv")
 # bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv") # both measures appear in mass table
 bodymass   <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
 
@@ -117,13 +117,13 @@ length(bruv_species) - nrow(bruv_traits)
 
 summary(bruv_traits)
 interesting_traits <- c("scientific", 
-                        "fb.vulnerability")
+                        "RLS.trophic.group")
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
 
 # overall traits table for all species but just our traits
 
 alltrait_sub1 <- subset(alltrait, select = "scientific")
-alltrait_sub3 <- subset(alltrait, select = "fb.vulnerability")
+alltrait_sub3 <- subset(alltrait, select = "RLS.trophic.group")
 
 alltrait_sub0 <- cbind(alltrait_sub1, alltrait_sub3)
 
@@ -163,7 +163,9 @@ bruv_notrait
 
 str(bruv_covs)
 
-bruv_spatial <- subset(bruv_covs, select =sample:longitude)
+bruv_xy <- subset(bruv_covs, select =sample:longitude)
+rownames(bruv_xy) <- bruv_xy$sample
+bruv_xy <- bruv_xy[,-1]
 
 
 #### write RDS to preserve row names ------
@@ -172,7 +174,7 @@ bruv_spatial <- subset(bruv_covs, select =sample:longitude)
 saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
 saveRDS(bruv_covs,   "data/bruv_covariates_wide.rds")
 saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
-saveRDS(bruv_spatial, "data/bruv_spatial.rds")
+saveRDS(bruv_xy, "data/bruv_xy.rds")
 
 
 # fix!

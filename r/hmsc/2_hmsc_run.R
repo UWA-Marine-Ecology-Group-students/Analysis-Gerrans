@@ -15,7 +15,7 @@ set.seed(1)
 bruv_covs   <- readRDS("data/bruv_covariates_wide.rds")
 bruv_maxn   <- readRDS("data/bruv_maxn_wide.rds")
 bruv_traits <- readRDS("data/bruv_traits_my_species.rds")
-bruv_spatial <- readRDS("data/bruv_spatial.rds")
+bruv_xy <- readRDS("data/bruv_xy.rds")
 
 # set data structure for HMSC
 bruv_covs$sample   <- as.factor(bruv_covs$sample)
@@ -27,10 +27,11 @@ XData       <- bruv_covs
 TrData      <- bruv_traits
 XFormula    <- ~ depth + location
 TrFormula   <- ~ feeding.guild
-studyDesign <- data.frame(sample = as.factor(XData$sample),
-                          location = as.factor(XData$location)) # moved location to study design area (can consider moving back)
-rL1 <- HmscRandomLevel(units = levels(studyDesign$sample))
-rL2 <-  HmscRandomLevel(units = levels(studyDesign$location))   # added study design as nested random factor
+studyDesign <- data.frame(sample = as.factor(XData$sample))
+                          #location = as.factor(XData$location)) # moved location to study design area (can consider moving back)
+#rL1 <- HmscRandomLevel(units = levels(studyDesign$sample))
+#rL2 <-  HmscRandomLevel(units = levels(studyDesign$location))   # added study design as nested random factor
+rL = HmscRandomLevel(sData=bruv_xy)
 
 # form the data structure required for HMSC modelling
 m <- Hmsc(Y = bruv_maxn, 
@@ -39,7 +40,8 @@ m <- Hmsc(Y = bruv_maxn,
           TrData      = bruv_traits,
           TrFormula   = TrFormula,
           distr       = "poisson", 
-          studyDesign = studyDesign)
+          studyDesign = studyDesign,
+          ranLevels=list(sample=rL))
 
 # cross-check what we have set up before running the model
 head(m$X)
@@ -199,6 +201,37 @@ plotGradient(m, Gradientl, pred=predY, measure="Y", index = 17, showData = TRUE,
 plotGradient(m, Gradientl, pred=predY, measure="S", showData = TRUE, jigger = 0.1)
 plotGradient(m, Gradientl, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 plotGradient(m, Gradientl, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
+
+
+head(bruv_grid)
+
+#grid = droplevels(subset(grid,!(Habitat=="Ma")))
+
+# We next construct the objects xy.grid and XData.grid that have the 
+# coordinates and environmental predictors, named similarly (hab and clim) as
+# for the original data matrix (see m$XData) 
+
+xy.grid = as.matrix(cbind(bruv_grid$latitude,bruv_grid$longitude))
+
+#XData.grid = data.frame(hab=grid$Habitat, clim=grid$AprMay, stringsAsFactors = TRUE)
+
+# choose XData grid points to include into grid data
+
+# We next use the prepareGradient function to convert the environmental and 
+# spatial predictors into a format that can be used as input for the predict 
+# function
+
+Gradient = prepareGradient(mpost, XDataNew = XData.grid, sDataNew = list(Route=xy.grid))
+
+# We are now ready to compute the posterior predictive distribution (takes a minute to compute it)
+nParallel=2
+predY = predict(m, Gradient=Gradient, expected = TRUE, nParallel=nParallel)
+
+# Note that we used expected = TRUE to predict occurrence probabilities 
+# (e.g. 0.2) instead of occurrences (0 or 1) 
+# Note also that if you have very large prediction grid, you can use the 
+# predictEtaMean = TRUE option to speed up the computations
+# predY = predict(m, Gradient=Gradient, predictEtaMean = TRUE, expected = TRUE)
 
 
 ##### end new draft -------
@@ -374,7 +407,7 @@ plotGradient(m, Gradient, pred=predY, measure="Y", index = 50, showData = TRUE, 
 plotGradient(m, Gradient, pred=predY, measure="S", showData = TRUE, jigger = 0.1)
 plotGradient(m, Gradient, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 plotGradient(m, Gradient, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
-
+ 
 
 grid = read.csv(file.path(data.directory, "grid_1000.csv"), stringsAsFactors=TRUE)
 head(grid)
