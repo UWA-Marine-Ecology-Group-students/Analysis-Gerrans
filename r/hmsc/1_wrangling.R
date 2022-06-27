@@ -76,7 +76,7 @@ nrow(bruv_covs) == nrow(bruv_maxn_w)                                            
 #### generate traits table including each species ----
 
 # read in traits table, body length and mass
-alltrait   <- read.csv("data/traits/life_history.csv")
+alltrait   <- read.csv("data/traits/Australia.life.history - australia.life.history.csv")
 # bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv") # both measures appear in mass table
 bodymass   <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
 
@@ -163,7 +163,8 @@ bruv_notrait
 
 str(bruv_covs)
 
-bruv_spatial <- subset(bruv_covs, select =sample:longitude)
+bruv_grid <- subset(bruv_covs, select =sample:longitude)
+
 
 
 #### write RDS to preserve row names ------
@@ -172,7 +173,7 @@ bruv_spatial <- subset(bruv_covs, select =sample:longitude)
 saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
 saveRDS(bruv_covs,   "data/bruv_covariates_wide.rds")
 saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
-saveRDS(bruv_spatial, "data/bruv_spatial.rds")
+saveRDS(bruv_grid, "data/bruv_grid.rds")
 
 
 # fix!
