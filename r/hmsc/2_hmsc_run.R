@@ -20,18 +20,20 @@ bruv_xy     <- readRDS("data/bruv_xy.rds")
 # set data structure for HMSC
 bruv_covs$sample   <- as.factor(bruv_covs$sample)
 bruv_covs$location <- as.factor(bruv_covs$location)
+str(bruv_covs)
 
 # prepare our data for HMSC model structure
 Y           <- bruv_maxn
 XData       <- bruv_covs
 TrData      <- bruv_traits
-XFormula    <- ~ depth + location
-TrFormula   <- ~ feeding.guild
+XFormula    <- ~ depth + location + macroalgae + mean.relief
+TrFormula   <- ~ meanlength + rls_trophic_group
 studyDesign <- data.frame(sample = as.factor(XData$sample))
+rL          <- HmscRandomLevel(sData = bruv_xy)
                           #location = as.factor(XData$location)) # moved location to study design area (can consider moving back)
 #rL1 <- HmscRandomLevel(units = levels(studyDesign$sample))
 #rL2 <-  HmscRandomLevel(units = levels(studyDesign$location))   # added study design as nested random factor
-rL = HmscRandomLevel(sData=bruv_xy)
+
 
 # form the data structure required for HMSC modelling
 m <- Hmsc(Y = bruv_maxn, 
@@ -41,7 +43,7 @@ m <- Hmsc(Y = bruv_maxn,
           TrFormula   = TrFormula,
           distr       = "poisson", 
           studyDesign = studyDesign,
-          ranLevels=list(sample=rL))
+          ranLevels   = list(sample = rL))
 
 # cross-check what we have set up before running the model
 head(m$X)
@@ -58,7 +60,7 @@ model.directory <- "output/hmsc_model_data"
 nChains   <- 4
 nParallel <- 4
 samples   <- 1000
-for (thin in c(1,10)){
+for (thin in c(1, 10)){
   transient <- 50*thin
   m <- sampleMcmc(m, thin = thin, samples = samples, 
                   transient = transient, nChains = nChains, 
@@ -84,12 +86,12 @@ thin = 10
 filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
-#thin 100
-nChains = 4
-samples = 1000
-thin = 100
-filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
-load(filename)
+# #thin 100
+# nChains = 4
+# samples = 1000
+# thin = 100
+# filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+# load(filename)
 
 
 # We restrict here the study of MCMC convergence to the examination of 

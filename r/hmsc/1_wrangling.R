@@ -75,8 +75,7 @@ nrow(bruv_covs) == nrow(bruv_maxn_w)                                            
 
 #### generate traits table including each species ----
 
-# read in traits table, body length and mass
-alltrait   <- read.csv("data/traits/Australia.life.history - australia.life.history.csv")
+# read body length and mass
 # bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv") # both measures appear in mass table
 bodymass   <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
 
@@ -95,9 +94,15 @@ head(bodydim)
 plot(log(bodydim$meanlength), log(bodydim$meanmass))
 cor(bodydim$meanlength, bodydim$meanmass) 
 
-# reduce traits table from entire sheet to just our species
+# read in full traits table, clean column names and shorten from entire sheet to just our species
+alltrait   <- read.csv("data/traits/Australia.life.history - australia.life.history.csv")
+colnames(alltrait) <- gsub("\\.", "_", colnames(alltrait))
+colnames(alltrait) <- tolower(colnames(alltrait))
+colnames(alltrait)
+
 bruv_species        <- colnames(bruv_maxn_w)                                    # species from maxn column names
-alltrait$scientific <- gsub(" ", "_", alltrait$scientific)                      # adding . to species names for consistency
+head(alltrait)
+alltrait$scientific <- gsub(" ", "_", alltrait$scientific)                      # adding _ to species names for consistency
 bruv_traits         <- alltrait[alltrait$scientific %in% bruv_species, ]
 
 # how many species are we missing traits for?
@@ -117,14 +122,13 @@ length(bruv_species) - nrow(bruv_traits)
 
 summary(bruv_traits)
 interesting_traits <- c("scientific", 
-                        "RLS.trophic.group")
+                        "rls_trophic_group")
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
 
 # overall traits table for all species but just our traits
 
 alltrait_sub1 <- subset(alltrait, select = "scientific")
-alltrait_sub3 <- subset(alltrait, select = "RLS.trophic.group")
-
+alltrait_sub3 <- subset(alltrait, select = "rls_trophic_group")
 alltrait_sub0 <- cbind(alltrait_sub1, alltrait_sub3)
 
 # clean up/remove species from traits data if they have NA in any trait info
@@ -138,8 +142,10 @@ head(bruv_traits)
                                       #collapse = " "))                          # remove punctuation and duplicates
 #unique(bruv_traits$feeding.guild)
 
-# add body data columns
+# add body data columns and tidy
 bruv_traits <- merge(bruv_traits, bodydim[, c(4:6)], by = 'scientific')
+bruv_traits$rls_trophic_group <- tolower(bruv_traits$rls_trophic_group)
+bruv_traits$rls_trophic_group <- as.factor(bruv_traits$rls_trophic_group)
 head(bruv_traits)
 summary(bruv_traits)
 
@@ -163,7 +169,7 @@ bruv_notrait
 
 str(bruv_covs)
 
-bruv_xy <- subset(bruv_covs, select =sample:longitude)
+bruv_xy <- subset(bruv_covs, select = sample:longitude)
 rownames(bruv_xy) <- bruv_xy$sample
 bruv_xy <- bruv_xy[,-1]
 
@@ -173,7 +179,7 @@ bruv_xy <- bruv_xy[,-1]
 saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
 saveRDS(bruv_covs,   "data/bruv_covariates_wide.rds")
 saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
-saveRDS(bruv_xy, "data/bruv_xy.rds")
+saveRDS(bruv_xy,     "data/bruv_xy.rds")
 
 
 # fix!
