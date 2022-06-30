@@ -167,7 +167,6 @@ bruv_xy <- subset(bruv_covs, select =sample:longitude)
 rownames(bruv_xy) <- bruv_xy$sample
 bruv_xy <- bruv_xy[,-1]
 
-
 #### write RDS to preserve row names ------
 
 # write to RDS to preserve row names 

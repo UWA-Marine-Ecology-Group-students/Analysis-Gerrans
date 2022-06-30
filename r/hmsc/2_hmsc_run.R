@@ -15,7 +15,7 @@ set.seed(1)
 bruv_covs   <- readRDS("data/bruv_covariates_wide.rds")
 bruv_maxn   <- readRDS("data/bruv_maxn_wide.rds")
 bruv_traits <- readRDS("data/bruv_traits_my_species.rds")
-bruv_xy <- readRDS("data/bruv_xy.rds")
+bruv_xy     <- readRDS("data/bruv_xy.rds")
 
 # set data structure for HMSC
 bruv_covs$sample   <- as.factor(bruv_covs$sample)
