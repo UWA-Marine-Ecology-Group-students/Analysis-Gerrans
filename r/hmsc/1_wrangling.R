@@ -122,14 +122,13 @@ length(bruv_species) - nrow(bruv_traits)
 
 summary(bruv_traits)
 interesting_traits <- c("scientific", 
-                        "rls_trophic_group")
+                        "rls_trophic_group",
+                        "rls_complexity",
+                        "rls_substrate_type")
+
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
 
-# overall traits table for all species but just our traits
-
-alltrait_sub1 <- subset(alltrait, select = "scientific")
-alltrait_sub3 <- subset(alltrait, select = "rls_trophic_group")
-alltrait_sub0 <- cbind(alltrait_sub1, alltrait_sub3)
+head(bruv_traits)
 
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
