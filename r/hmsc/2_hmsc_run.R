@@ -26,8 +26,8 @@ str(bruv_covs)
 Y           <- bruv_maxn
 XData       <- bruv_covs
 TrData      <- bruv_traits
-XFormula    <- ~ depth + location + macroalgae + mean.relief
-TrFormula   <- ~ meanlength + rls_trophic_group
+XFormula    <- ~ depth + location + macroalgae + mean.relief + spongegarden + consolidated + unconsolidated
+TrFormula   <- ~ meanlength + rls_trophic_group + rls_complexity + rls_substrate_type
 studyDesign <- data.frame(sample = as.factor(XData$sample))
 rL          <- HmscRandomLevel(sData = bruv_xy)
                           #location = as.factor(XData$location)) # moved location to study design area (can consider moving back)
