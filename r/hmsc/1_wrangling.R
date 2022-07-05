@@ -130,6 +130,10 @@ bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
 
 head(bruv_traits)
 
+rls_trait1 <- subset(alltrait, select = scientific)
+rls_traits <- subset(alltrait, select = rls_trophic_group:rls_complexity)
+rlstraits <- cbind(rls_trait1,rls_traits)
+
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
 head(bruv_traits)
