@@ -132,7 +132,9 @@ head(bruv_traits)
 
 rls_trait1 <- subset(alltrait, select = scientific)
 rls_traits <- subset(alltrait, select = rls_trophic_group:rls_complexity)
-rlstraits <- cbind(rls_trait1,rls_traits)
+fed <- subset(alltrait, select = feeding_guild)
+rlstraits <- cbind(rls_trait1,rls_traits, fed)
+
 
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
@@ -175,6 +177,7 @@ str(bruv_covs)
 bruv_xy <- subset(bruv_covs, select = sample:longitude)
 rownames(bruv_xy) <- bruv_xy$sample
 bruv_xy <- bruv_xy[,-1]
+
 
 #### write RDS to preserve row names ------
 

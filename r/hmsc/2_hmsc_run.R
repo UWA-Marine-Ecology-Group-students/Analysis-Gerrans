@@ -7,7 +7,7 @@
 ##
 
 
-######## fit models -------
+######## Fit models -------
 library(Hmsc)
 set.seed(1)
 
@@ -136,6 +136,8 @@ plot(mpost$Gamma) #traits covariates
 
 gelman.diag(mpost$Beta[,1:50]) #establish convergence
 
+######## Explore model fit --------
+
 postBeta = getPostEstimate(m,parName = "Beta")
 par(mar = c(5,11,2.5,0))
 plotBeta(m, 
@@ -151,6 +153,8 @@ plotBeta(m,
 
 postGamma = getPostEstimate(m,parName = "Gamma")
 plotGamma(m, post = postGamma, supportLevel = 0.2)
+
+######## Explore parameter predictions ---------
 
 VP = computeVariancePartitioning(m)
 plotVariancePartitioning(m, VP = VP, las =2, horiz = F)
@@ -204,26 +208,23 @@ plotGradient(m, Gradientl, pred=predY, measure="S", showData = TRUE, jigger = 0.
 plotGradient(m, Gradientl, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 plotGradient(m, Gradientl, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
 
+######## GRID ---------
 
-head(bruv_grid)
+head(bruv_xy)
 
-#grid = droplevels(subset(grid,!(Habitat=="Ma")))
-
-# We next construct the objects xy.grid and XData.grid that have the 
-# coordinates and environmental predictors, named similarly (hab and clim) as
-# for the original data matrix (see m$XData) 
+bruv_grid <- subset(bruv_covs, select = sample:location)
 
 xy.grid = as.matrix(cbind(bruv_grid$latitude,bruv_grid$longitude))
 
-#XData.grid = data.frame(hab=grid$Habitat, clim=grid$AprMay, stringsAsFactors = TRUE)
-
-# choose XData grid points to include into grid data
+XData.grid = data.frame(dep=bruv_grid$depth, loc=bruv_grid$location, sam = bruv_grid$sample, stringsAsFactors = TRUE)
 
 # We next use the prepareGradient function to convert the environmental and 
 # spatial predictors into a format that can be used as input for the predict 
 # function
 
-Gradient = prepareGradient(mpost, XDataNew = XData.grid, sDataNew = list(Route=xy.grid))
+Gradient = prepareGradient(m, XDataNew = XData.grid, sDataNew = list(Sample=xy.grid))
+
+
 
 # We are now ready to compute the posterior predictive distribution (takes a minute to compute it)
 nParallel=2
