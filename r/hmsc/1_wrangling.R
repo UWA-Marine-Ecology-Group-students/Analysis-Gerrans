@@ -15,13 +15,35 @@ library(reshape2)
 bruv_maxn <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.maxn.csv")
 colnames(bruv_maxn)
 
+# filter out rare species
+bruv_maxn$pres_abs <- ifelse(bruv_maxn$maxn > 0, 1, 0)
+
+# calculate number of sightings (sum of 1's from above)
+for(speciesi in unique(bruv_maxn$scientific)){
+  bruv_maxn$sp_n_sightings[bruv_maxn$scientific == speciesi] <- 
+    sum(bruv_maxn$pres_abs[bruv_maxn$scientific == speciesi])
+}
+head(bruv_maxn)
+
+# how many unique species do we start with?
+length(unique(bruv_maxn$scientific))
+
+# how many if we cut off at n sightings?
+length(unique(bruv_maxn$scientific[bruv_maxn$sp_n_sightings > 5]))
+
+sptokeep <- unique(bruv_maxn$scientific[bruv_maxn$sp_n_sightings > 5])
+# exclude low sighting species
+
+bruv_maxn <- bruv_maxn[bruv_maxn$scientific %in% sptokeep, ]
+
 # remake scientific name with just genus and species for matching up with other dfs
 bruv_maxn$genus_species <- c(paste(bruv_maxn$genus, 
                                    bruv_maxn$species, sep = "_"))
 head(bruv_maxn$genus_species)
-bruv_maxn_w  <- reshape2::dcast(bruv_maxn[, c(1, 3, 20)], 
+
+bruv_maxn_w  <- reshape2::dcast(bruv_maxn[, c(1, 3, 22)],     
                                 sample ~ genus_species, 
-                                fun = sum, value.var = "maxn")
+                                fun = sum, value.var = "maxn")      # columns included are sample, maxn and genus_species
 rownames(bruv_maxn_w) <- bruv_maxn_w$sample                         # make sample ids row names
 rownames(bruv_maxn_w) <- gsub("\\.", "_", bruv_maxn_w$sample)
 bruv_maxn_w <- bruv_maxn_w[, -1]                                    # drop sample column

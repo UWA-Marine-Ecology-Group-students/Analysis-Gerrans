@@ -26,7 +26,7 @@ str(bruv_covs)
 Y           <- bruv_maxn
 XData       <- bruv_covs
 TrData      <- bruv_traits
-XFormula    <- ~ depth + location + macroalgae + mean.relief + spongegarden + consolidated + unconsolidated
+XFormula    <- ~ depth + macroalgae + mean.relief + spongegarden + consolidated + unconsolidated
 TrFormula   <- ~ meanlength + rls_trophic_group + rls_complexity + rls_substrate_type
 studyDesign <- data.frame(sample = as.factor(XData$sample))
 rL          <- HmscRandomLevel(sData = bruv_xy)
@@ -60,7 +60,7 @@ model.directory <- "output/hmsc_model_data"
 nChains   <- 4
 nParallel <- 4
 samples   <- 1000
-for (thin in c(1, 10)){
+for (thin in c(10)){
   transient <- 50*thin
   m <- sampleMcmc(m, thin = thin, samples = samples, 
                   transient = transient, nChains = nChains, 
@@ -157,6 +157,7 @@ plotGamma(m, post = postGamma, supportLevel = 0.2)
 ######## Explore parameter predictions ---------
 
 VP = computeVariancePartitioning(m)
+dev.off()
 plotVariancePartitioning(m, VP = VP, las =2, horiz = F)
 
 #gradient depth
