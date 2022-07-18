@@ -39,6 +39,8 @@ bruv_maxn <- bruv_maxn[bruv_maxn$scientific %in% sptokeep, ]
 # remake scientific name with just genus and species for matching up with other dfs
 bruv_maxn$genus_species <- c(paste(bruv_maxn$genus, 
                                    bruv_maxn$species, sep = "_"))
+bruv_maxn$genus_species <- gsub(" ", "_", bruv_maxn$genus_species) 
+
 head(bruv_maxn$genus_species)
 
 bruv_maxn_w  <- reshape2::dcast(bruv_maxn[, c(1, 3, 22)],     
@@ -102,7 +104,7 @@ nrow(bruv_covs) == nrow(bruv_maxn_w)                                            
 bodymass   <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
 
 # clean up/remove species from length/mass data if they have NA in any measurement info
-# bodylength <- na.omit(bodylength)
+#bodylength <- na.omit(bodylength)
 bodymass   <- na.omit(bodymass)
 
 # calculate mean body measures per fish
@@ -110,6 +112,7 @@ bodydim <- summarise(group_by(bodymass, family, genus, species),
                      meanlength = sum(length)/sum(number),
                      meanmass = sum(mass.g)/sum(number))
 bodydim$scientific  <- interaction(bodydim$genus, bodydim$species, sep = "_")
+bodydim$scientific <- gsub(" ", "_", bodydim$scientific)     
 head(bodydim)
 
 # check correlation among length and mass
@@ -118,14 +121,16 @@ cor(bodydim$meanlength, bodydim$meanmass)
 
 # read in full traits table, clean column names and shorten from entire sheet to just our species
 alltrait   <- read.csv("data/traits/Australia.life.history - australia.life.history.csv")
-colnames(alltrait) <- gsub("\\.", "_", colnames(alltrait))
-colnames(alltrait) <- tolower(colnames(alltrait))
-colnames(alltrait)
+sptraits <- read.csv("data/traits/traits_spp.csv")
+colnames(sptraits) <- gsub("\\.", "_", colnames(sptraits))
+colnames(sptraits) <- tolower(colnames(sptraits))
+colnames(sptraits)
 
-bruv_species        <- colnames(bruv_maxn_w)                                    # species from maxn column names
-head(alltrait)
-alltrait$scientific <- gsub(" ", "_", alltrait$scientific)                      # adding _ to species names for consistency
-bruv_traits         <- alltrait[alltrait$scientific %in% bruv_species, ]
+bruv_species        <- colnames(bruv_maxn_w)     # species from maxn column names
+head(sptraits)
+View(bruv_species)
+sptraits$scientific <- gsub(" ", "_", sptraits$scientific)                      # adding _ to species names for consistency
+bruv_traits         <- sptraits[sptraits$scientific %in% bruv_species, ]
 
 # how many species are we missing traits for?
 length(bruv_species) - nrow(bruv_traits)
@@ -143,20 +148,17 @@ length(bruv_species) - nrow(bruv_traits)
 ###### feeding guild, fb.vulnerability, iucn ranking, body mass
 
 summary(bruv_traits)
+head(bruv_traits)
 interesting_traits <- c("scientific", 
-                        "rls_trophic_group",
-                        "rls_complexity",
-                        "rls_substrate_type")
+                        "trophic_group",
+                        "complexity",
+                        "substrate_group",
+                        "water_column",
+                        "night_day")
 
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
 
 head(bruv_traits)
-
-rls_trait1 <- subset(alltrait, select = scientific)
-rls_traits <- subset(alltrait, select = rls_trophic_group:rls_complexity)
-fed <- subset(alltrait, select = feeding_guild)
-rlstraits <- cbind(rls_trait1,rls_traits, fed)
-
 
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
@@ -171,8 +173,19 @@ head(bruv_traits)
 
 # add body data columns and tidy
 bruv_traits <- merge(bruv_traits, bodydim[, c(4:6)], by = 'scientific')
-bruv_traits$rls_trophic_group <- tolower(bruv_traits$rls_trophic_group)
-bruv_traits$rls_trophic_group <- as.factor(bruv_traits$rls_trophic_group)
+
+
+bruv_traits$trophic_group <- tolower(bruv_traits$trophic_group)
+bruv_traits$substrate_group <- tolower(bruv_traits$substrate_group)
+bruv_traits$complexity <- tolower(bruv_traits$complexity)
+bruv_traits$water_column <- tolower(bruv_traits$water_column)
+bruv_traits$night_day <- tolower(bruv_traits$night_day)
+
+bruv_traits$trophic_group <- as.factor(bruv_traits$trophic_group)
+bruv_traits$substrate_group <- as.factor(bruv_traits$substrate_group)
+bruv_traits$complexity <- as.factor(bruv_traits$complexity)
+bruv_traits$water_column <- as.factor(bruv_traits$water_column)
+bruv_traits$night_day <- as.factor(bruv_traits$night_day)
 head(bruv_traits)
 summary(bruv_traits)
 
