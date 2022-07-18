@@ -211,25 +211,31 @@ plotGradient(m, Gradientl, pred=predY, measure="T", index = 4, showData = TRUE, 
 
 ######## GRID ---------
 
-head(bruv_xy)
+grid <- read.csv("data/spatial/grid.csv")
 
-bruv_grid <- subset(bruv_covs, select = sample:location)
+head(grid)
+colnames(grid)
 
-xy.grid = as.matrix(cbind(bruv_grid$latitude,bruv_grid$longitude))
+xy.grid = as.matrix(cbind(grid$lat,grid$long))
 
-XData.grid = data.frame(dep=bruv_grid$depth, loc=bruv_grid$location, sam = bruv_grid$sample, stringsAsFactors = TRUE)
+XData.grid = data.frame(hab=grid$dominant.habitat, 
+                        loc=grid$location, 
+                        relief = grid$relief, 
+                        dep = grid$depth,
+                        stringsAsFactors = TRUE)
 
 # We next use the prepareGradient function to convert the environmental and 
 # spatial predictors into a format that can be used as input for the predict 
 # function
 
-Gradient = prepareGradient(m, XDataNew = XData.grid, sDataNew = list(Sample=xy.grid))
+Gradient = prepareGradient(m, XDataNew = XData.grid, sDataNew = list(sample=xy.grid))
 
-
+####UP TO HERE -----
 
 # We are now ready to compute the posterior predictive distribution (takes a minute to compute it)
 nParallel=2
 predY = predict(m, Gradient=Gradient, expected = TRUE, nParallel=nParallel)
+
 
 # Note that we used expected = TRUE to predict occurrence probabilities 
 # (e.g. 0.2) instead of occurrences (0 or 1) 
