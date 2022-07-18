@@ -105,6 +105,8 @@ psrf.beta = gelman.diag(mpost$Beta,multivariate=FALSE)$psrf
 psrf.beta
 
 
+######## Explore model fit --------
+
 # Visual chain tests for different coefficients of interest 
 
 # Beta estimates are the influence of environment on species
@@ -130,26 +132,17 @@ plotBeta(m,
          plotTree = F,
          spNamesNumbers = c(T,F))
 
+plotBeta(m, 
+         post = postBeta,
+         param = "Mean",
+         plotTree = F,
+         spNamesNumbers = c(T,F))
 
 
 plot(mpost$Gamma) #traits covariates
 
 gelman.diag(mpost$Beta[,1:50]) #establish convergence
 
-######## Explore model fit --------
-
-postBeta = getPostEstimate(m,parName = "Beta")
-par(mar = c(5,11,2.5,0))
-plotBeta(m, 
-         post = postBeta,
-         plotTree = F,
-         spNamesNumbers = c(T,F))
-
-plotBeta(m, 
-         post = postBeta,
-         param = "Mean",
-         plotTree = F,
-         spNamesNumbers = c(T,F))
 
 postGamma = getPostEstimate(m,parName = "Gamma")
 plotGamma(m, post = postGamma, supportLevel = 0.2)
