@@ -179,7 +179,7 @@ plotGradient(m, Gradientd, pred=predY, measure="T", index = 4, showData = TRUE, 
 
 
 #gradient location
-Gradientl = constructGradient(m,focalVariable = "location")
+Gradientl = constructGradient(m,focalVariable = "macroalgae")
 
 head(Gradientl$XDataNew)
 
@@ -211,10 +211,10 @@ colnames(grid)
 
 xy.grid = as.matrix(cbind(grid$lat,grid$long))
 
-XData.grid = data.frame(hab=grid$dominant.habitat, 
-                        loc=grid$location, 
+XData.grid = data.frame(dominant.habitat=grid$dominant.habitat, 
+                        location=grid$location, 
                         relief = grid$relief, 
-                        dep = grid$depth,
+                        depth = grid$depth,
                         stringsAsFactors = TRUE)
 
 # We next use the prepareGradient function to convert the environmental and 
