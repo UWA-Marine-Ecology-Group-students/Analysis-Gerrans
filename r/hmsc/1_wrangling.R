@@ -8,6 +8,9 @@
 
 library(dplyr)
 library(reshape2)
+library(raster)
+library(stars)
+library(starsExtra)
 
 #### wrangle maxn data into wide format ----
 
@@ -57,7 +60,7 @@ head(bruv_maxn_w)
 bruv_meta    <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
 bruv_habitat <- read.csv("data/tidy/2021-05_Abrolhos_BRUVs_random-points_percent-cover_broad.habitat.csv")
 colnames(bruv_meta)                                                             # the columns of the original data that we can choose covariates from
-bruv_covs <- select(bruv_meta, c("Sample", "Latitude", "Longitude", 
+bruv_covs <- dplyr::select(bruv_meta, c("Sample", "Latitude", "Longitude", 
                                  "Depth", "Location"))                          # collate all covariates we're interested in
 bruv_covs <- unique(bruv_covs)                                                  # collapse rows to make it one row per sample (match with bruv_maxn)
 head(bruv_covs)
@@ -96,6 +99,35 @@ colnames(bruv_covs) <- tolower(colnames(bruv_covs))
 head(bruv_covs)
 nrow(bruv_covs) == nrow(bruv_maxn_w)                                            # do row numbers match in maxn and covariates?
 
+# get the bathymetric derivatives
+# make drop data into a spatial dataset
+bruvcov_sp <- SpatialPointsDataFrame(coords = cbind(bruv_covs$longitude, 
+                                                    bruv_covs$latitude), 
+                                     data = bruv_covs)
+plot(bruvcov_sp)
+
+# bring in bathymetry
+bathy              <- raster("data/spatial/rasters/WA_500m_bathy.tif")
+wgscrs             <- CRS("+proj=longlat +datum=WGS84")
+proj4string(bathy) <- wgscrs
+bathy              <- crop(bathy, buffer(bruvcov_sp, 10))
+names(bathy)       <- "depth"
+plot(bathy)
+plot(bruvcov_sp, add = T)
+
+# generate terrain variables for project area
+slope <- terrain(bathy, opt = "slope", unit = "degrees", neighbours = 8)
+zstar <- st_as_stars(bathy)                                                     # convert to stars obj
+detre <- detrend(zstar, parallel = 8)                                           # detrend bathymetry
+detre <- as(object = detre, Class = "Raster")                                   # back to raster
+names(detre)     <- c("detrended", "lineartrend")
+envcov           <- stack(bathy, slope, detre[[1]])
+plot(envcov)
+
+bruv_covs <- cbind(bruv_covs, extract(envcov[[2:3]], bruvcov_sp))
+head(bruv_covs)
+
+saveRDS(envcov, "data/spatial/rasters/bathy_derivatives.rds")
 
 #### generate traits table including each species ----
 
@@ -203,7 +235,7 @@ summary(bruv_traits)
 
 # make species names row names
 rownames(bruv_traits) <- bruv_traits$scientific
-bruv_traits <- bruv_traits[ , -1]
+bruv_traits           <- bruv_traits[ , -1]
 
 # drop bruv maxn info for species that are lacking any traits
 bruv_maxn_w <- bruv_maxn_w[ , colnames(bruv_maxn_w) %in% c(rownames(bruv_traits))]
@@ -211,30 +243,23 @@ dim(bruv_maxn_w)
 
 # list species without traits :(
 bruv_species_traits <- rownames(bruv_traits)
-
-bruv_notrait <- bruv_species[(bruv_species %in% bruv_species_traits) == FALSE]
+bruv_notrait        <- bruv_species[(bruv_species %in% bruv_species_traits) == FALSE]
 length(bruv_notrait)
 bruv_notrait
 
 #### wrangle spatial context data -----
-
 str(bruv_covs)
 
-bruv_xy <- subset(bruv_covs, select = sample:longitude)
+bruv_xy           <- subset(bruv_covs, select = sample:longitude)
 rownames(bruv_xy) <- bruv_xy$sample
-bruv_xy <- bruv_xy[,-1]
-
+bruv_xy           <- bruv_xy[, -1]
 
 #### write RDS to preserve row names ------
-
-# write to RDS to preserve row names 
 saveRDS(bruv_maxn_w, "data/bruv_maxn_wide.rds")
 saveRDS(bruv_covs,   "data/bruv_covariates_wide.rds")
 saveRDS(bruv_traits, "data/bruv_traits_my_species.rds")
 saveRDS(bruv_xy,     "data/bruv_xy.rds")
 
-
-# fix!
 
 # clear environment
 rm(list=ls())
