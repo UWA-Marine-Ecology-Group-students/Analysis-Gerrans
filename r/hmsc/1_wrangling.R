@@ -128,7 +128,7 @@ colnames(sptraits)
 
 bruv_species        <- colnames(bruv_maxn_w)     # species from maxn column names
 head(sptraits)
-View(bruv_species)
+# View(bruv_species)
 sptraits$scientific <- gsub(" ", "_", sptraits$scientific)                      # adding _ to species names for consistency
 bruv_traits         <- sptraits[sptraits$scientific %in% bruv_species, ]
 
@@ -142,6 +142,16 @@ length(bruv_species) - nrow(bruv_traits)
 # use any of species names thought it was but couldnt be 100% sure 
 # eg chromis westaustralis
 
+# merge body length and mass data - only one species taken from RLS
+bruv_traits <- merge(bruv_traits, bodydim[, 4:6], by = "scientific", all.x = TRUE)
+head(bruv_traits)
+
+bruv_traits$splength <- ifelse(is.na(bruv_traits$meanlength), 
+                               as.numeric(bruv_traits$body_length), 
+                               bruv_traits$meanlength)
+bruv_traits$spmass <- ifelse(is.na(bruv_traits$meanmass), 
+                               as.numeric(bruv_traits$body_mass), 
+                               bruv_traits$meanmass)
 
 # reduce traits data to just our covariates of interest - use ::summary to choose 
 # possible traits to include,
@@ -149,16 +159,20 @@ length(bruv_species) - nrow(bruv_traits)
 
 summary(bruv_traits)
 head(bruv_traits)
+
 interesting_traits <- c("scientific", 
                         "trophic_group",
                         "complexity",
                         "substrate_group",
                         "water_column",
-                        "night_day")
+                        "night_day",
+                        "spmass",
+                        "splength")
 
 bruv_traits <- bruv_traits[ , colnames(bruv_traits) %in% interesting_traits]
 
 head(bruv_traits)
+summary(bruv_traits)
 
 # clean up/remove species from traits data if they have NA in any trait info
 bruv_traits <- na.omit(bruv_traits)
@@ -172,20 +186,18 @@ head(bruv_traits)
 #unique(bruv_traits$feeding.guild)
 
 # add body data columns and tidy
-bruv_traits <- merge(bruv_traits, bodydim[, c(4:6)], by = 'scientific')
 
-
-bruv_traits$trophic_group <- tolower(bruv_traits$trophic_group)
+bruv_traits$trophic_group   <- tolower(bruv_traits$trophic_group)
 bruv_traits$substrate_group <- tolower(bruv_traits$substrate_group)
-bruv_traits$complexity <- tolower(bruv_traits$complexity)
-bruv_traits$water_column <- tolower(bruv_traits$water_column)
-bruv_traits$night_day <- tolower(bruv_traits$night_day)
+bruv_traits$complexity      <- tolower(bruv_traits$complexity)
+bruv_traits$water_column    <- tolower(bruv_traits$water_column)
+bruv_traits$night_day       <- tolower(bruv_traits$night_day)
 
-bruv_traits$trophic_group <- as.factor(bruv_traits$trophic_group)
+bruv_traits$trophic_group   <- as.factor(bruv_traits$trophic_group)
 bruv_traits$substrate_group <- as.factor(bruv_traits$substrate_group)
-bruv_traits$complexity <- as.factor(bruv_traits$complexity)
-bruv_traits$water_column <- as.factor(bruv_traits$water_column)
-bruv_traits$night_day <- as.factor(bruv_traits$night_day)
+bruv_traits$complexity      <- as.factor(bruv_traits$complexity)
+bruv_traits$water_column    <- as.factor(bruv_traits$water_column)
+bruv_traits$night_day       <- as.factor(bruv_traits$night_day)
 head(bruv_traits)
 summary(bruv_traits)
 
@@ -203,7 +215,6 @@ bruv_species_traits <- rownames(bruv_traits)
 bruv_notrait <- bruv_species[(bruv_species %in% bruv_species_traits) == FALSE]
 length(bruv_notrait)
 bruv_notrait
-
 
 #### wrangle spatial context data -----
 
