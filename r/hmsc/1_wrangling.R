@@ -110,7 +110,7 @@ plot(bruvcov_sp)
 bathy              <- raster("data/spatial/rasters/WA_500m_bathy.tif")
 wgscrs             <- CRS("+proj=longlat +datum=WGS84")
 proj4string(bathy) <- wgscrs
-bathy              <- crop(bathy, buffer(bruvcov_sp, 10))
+bathy              <- crop(bathy, buffer(bruvcov_sp, 5000))
 names(bathy)       <- "depth"
 plot(bathy)
 plot(bruvcov_sp, add = T)
