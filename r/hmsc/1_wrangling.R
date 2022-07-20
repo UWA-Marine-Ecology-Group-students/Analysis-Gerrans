@@ -166,7 +166,7 @@ bruv_traits         <- sptraits[sptraits$scientific %in% bruv_species, ]
 
 # how many species are we missing traits for?
 length(bruv_species) - nrow(bruv_traits)
-#17 = 16 spp and pempheris tomanagi
+
 
 
 # look at number of maxn for individual species and see if there are a lot of them or not
