@@ -47,7 +47,7 @@ m <- Hmsc(Y = bruv_maxn,
 # cross-check what we have set up before running the model
 head(m$X)
 head(m$XScaled)
-head(m$Tr)
+head(m$Tr) 
 head(m$TrScaled)
 
 # we should use scaled versions of the bruv covariates - will chat about why sometime
@@ -80,8 +80,8 @@ list.files("output/hmsc_model_data")
 
 #thin 10
 nChains = 4
-samples = 200
-thin = 1
+samples = 1000
+thin = 10
 filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
