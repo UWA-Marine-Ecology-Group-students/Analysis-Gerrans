@@ -1,2 +1,6 @@
 gitcreds::gitcreds_set()
-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
+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
+
+
+usethis::create_github_token()
+#select 2 to use new token
