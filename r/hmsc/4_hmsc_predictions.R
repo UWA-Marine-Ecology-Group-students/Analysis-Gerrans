@@ -14,7 +14,7 @@ library(ggplot2)
 #thin 10
 nChains = 4
 samples = 1000
-thin = 10
+thin = 100
 filename = file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 

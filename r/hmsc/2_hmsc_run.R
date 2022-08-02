@@ -81,11 +81,7 @@ list.files("output/hmsc_model_data")
 #thin 10
 nChains = 4
 samples = 1000
-<<<<<<< HEAD
-thin = 10
-=======
 thin = 100
->>>>>>> 9374b84ce6521f15205e86f4a1e1de49f40f6bbd
 filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 

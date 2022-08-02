@@ -14,7 +14,7 @@ model.directory <- "output/hmsc_model_data"
 #thin 10
 nChains = 4
 samples = 1000
-thin = 10
+thin = 100
 filename = file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
@@ -68,3 +68,4 @@ plotGradient(m, Gradientl, pred=predY, measure="Y", index = 17, showData = TRUE,
 plotGradient(m, Gradientl, pred=predY, measure="S", showData = TRUE, jigger = 0.1)
 plotGradient(m, Gradientl, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 plotGradient(m, Gradientl, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
+
