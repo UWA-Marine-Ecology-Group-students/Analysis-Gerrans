@@ -59,7 +59,7 @@ model.directory <- "output/hmsc_model_data"
 nChains   <- 4
 nParallel <- 4
 samples   <- 1000
-for (thin in c(10)){
+for (thin in c(100)){
   transient <- 50*thin
   m <- sampleMcmc(m, thin = thin, samples = samples, 
                   transient = transient, nChains = nChains, 
@@ -80,8 +80,8 @@ list.files("output/hmsc_model_data")
 
 #thin 10
 nChains = 4
-samples = 200
-thin = 1
+samples = 1000
+thin = 100
 filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
