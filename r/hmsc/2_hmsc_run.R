@@ -125,7 +125,7 @@ gelman.diag(mpost$Beta[,1:50])
 
 # check out the estimate values themselves
 postBeta = getPostEstimate(m, parName = "Beta")
-par(mar=c(5,11,2.5,0))
+par(mar=c(6,10,0.5,0))
 plotBeta(m,
          post = postBeta, 
          plotTree = F,

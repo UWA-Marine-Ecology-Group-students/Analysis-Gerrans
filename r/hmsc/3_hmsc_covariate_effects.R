@@ -22,27 +22,20 @@ load(filename)
 
 #gradient depth
 Gradientd = constructGradient(m,focalVariable = "depth")
-
 head(Gradientd$XDataNew)
-
 predY = predict(m,
                 XData = Gradientd$XDataNew, 
                 studyDesign = Gradientd$studyDesignNew,
                 ranLevels = Gradientd$rLNew,
                 expected = TRUE)
-# predY = predict(m, Gradient=Gradientd, expected = TRUE)
+par(mar=c(5,6,3,2))
 
-
-plotGradient(m,
-             Gradientd,
-             pred=predY,
-             measure="S",
-             showData = TRUE)
-
-plotGradient(m, Gradientd, pred=predY, measure="Y", index = 50, showData = TRUE,  jigger = 0.1)
-plotGradient(m, Gradientd, pred=predY, measure="S", showData = TRUE, jigger = 0.1)
+#species
+plotGradient(m, Gradientd, pred=predY, measure="Y", index = 18, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradientd, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
 plotGradient(m, Gradientd, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
-plotGradient(m, Gradientd, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
 
 
 #gradient location
