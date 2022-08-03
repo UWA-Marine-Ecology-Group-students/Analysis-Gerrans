@@ -20,7 +20,7 @@ load(filename)
 
 ######## Explore parameter predictions ---------
 
-#gradient depth
+#####gradient depth-----
 Gradientd = constructGradient(m,focalVariable = "depth")
 head(Gradientd$XDataNew)
 predY = predict(m,
@@ -38,27 +38,115 @@ plotGradient(m, Gradientd, pred=predY, measure="S",showData = TRUE, jigger = 0.1
 plotGradient(m, Gradientd, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 
 
-#gradient location
-Gradientl = constructGradient(m,focalVariable = "macroalgae")
-
-head(Gradientl$XDataNew)
-
+#####gradient slope-----
+Gradients = constructGradient(m,focalVariable = "slope")
+head(Gradients$XDataNew)
 predY = predict(m,
-                XData = Gradientl$XDataNew, 
-                studyDesign = Gradientl$studyDesignNew,
-                ranLevels = Gradientl$rLNew,
+                XData = Gradients$XDataNew, 
+                studyDesign = Gradients$studyDesignNew,
+                ranLevels = Gradients$rLNew,
                 expected = TRUE)
-# predY = predict(m, Gradient=Gradientl, expected = TRUE)
 
+#species
+plotGradient(m, Gradients, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradients, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
+plotGradient(m, Gradients, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 
-plotGradient(m,
-             Gradientl,
-             pred=predY,
-             measure="S",
-             showData = TRUE)
+#####gradient detrended-----
+Gradientde = constructGradient(m,focalVariable = "detrended")
+head(Gradientde$XDataNew)
+predY = predict(m,
+                XData = Gradientde$XDataNew, 
+                studyDesign = Gradientde$studyDesignNew,
+                ranLevels = Gradientde$rLNew,
+                expected = TRUE)
 
-plotGradient(m, Gradientl, pred=predY, measure="Y", index = 17, showData = TRUE,  jigger = 0.1)
-plotGradient(m, Gradientl, pred=predY, measure="S", showData = TRUE, jigger = 0.1)
-plotGradient(m, Gradientl, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
-plotGradient(m, Gradientl, pred=predY, measure="T", index = 4, showData = TRUE, jigger = 0.1)
+#species
+plotGradient(m, Gradientde, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradientde, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
+plotGradient(m, Gradientde, pred=predY, measure="T", index = 5, showData = TRUE, jigger = 0.1)
+
+#####gradient macroalgae-----
+Gradientm = constructGradient(m,focalVariable = "macroalgae")
+head(Gradientm$XDataNew)
+predY = predict(m,
+                XData = Gradientm$XDataNew, 
+                studyDesign = Gradientm$studyDesignNew,
+                ranLevels = Gradientm$rLNew,
+                expected = TRUE)
+
+#species
+plotGradient(m, Gradientm, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradientm, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
+plotGradient(m, Gradientm, pred=predY, measure="T", index = 5, showData = TRUE, jigger = 0.1)
+
+#####gradient mean.relief------
+Gradientmr = constructGradient(m,focalVariable = "mean.relief")
+head(Gradientmr$XDataNew)
+predY = predict(m,
+                XData = Gradientmr$XDataNew, 
+                studyDesign = Gradientmr$studyDesignNew,
+                ranLevels = Gradientmr$rLNew,
+                expected = TRUE)
+
+#species
+plotGradient(m, Gradientmr, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradientmr, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
+plotGradient(m, Gradientmr, pred=predY, measure="T", index = 5, showData = TRUE, jigger = 0.1)
+
+#####gradient spongegarden-----
+Gradientsg = constructGradient(m,focalVariable = "spongegarden")
+head(Gradientsg$XDataNew)
+predY = predict(m,
+                XData = Gradientsg$XDataNew, 
+                studyDesign = Gradientsg$studyDesignNew,
+                ranLevels = Gradientsg$rLNew,
+                expected = TRUE)
+
+#species
+plotGradient(m, Gradientsg, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradientsg, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
+plotGradient(m, Gradientsg, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
+
+#####gradient consolidated-----
+Gradientc = constructGradient(m,focalVariable = "consolidated")
+head(Gradientc$XDataNew)
+predY = predict(m,
+                XData = Gradientc$XDataNew, 
+                studyDesign = Gradientc$studyDesignNew,
+                ranLevels = Gradientc$rLNew,
+                expected = TRUE)
+
+#species
+plotGradient(m, Gradientc, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradientc, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
+plotGradient(m, Gradientc, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
+
+#####gradient unconsolidated-----
+Gradientuc = constructGradient(m,focalVariable = "unconsolidated")
+head(Gradientuc$XDataNew)
+predY = predict(m,
+                XData = Gradientuc$XDataNew, 
+                studyDesign = Gradientuc$studyDesignNew,
+                ranLevels = Gradientuc$rLNew,
+                expected = TRUE)
+
+#species
+plotGradient(m, Gradientuc, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+#totalcount
+plotGradient(m, Gradientuc, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
+#traits
+plotGradient(m, Gradientuc, pred=predY, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 
