@@ -62,7 +62,7 @@ covdf      <- readRDS("output/covariate_grid.rds")
 mod.dir  <- "output/hmsc_model_data"
 nChains  <- 4
 samples  <- 1000
-thin     <- 100
+thin     <- 1000
 filename <- file.path(paste(mod.dir), 
                       paste0("model_chains_", as.character(nChains),
                              "_samples_", as.character(samples),

@@ -59,7 +59,7 @@ model.directory <- "output/hmsc_model_data"
 nChains   <- 4
 nParallel <- 4
 samples   <- 1000
-for (thin in c(100)){
+for (thin in c(1000)){
   transient <- 50*thin
   m <- sampleMcmc(m, thin = thin, samples = samples, 
                   transient = transient, nChains = nChains, 
@@ -81,7 +81,7 @@ list.files("output/hmsc_model_data")
 #thin 10
 nChains = 4
 samples = 1000
-thin = 100
+thin = 1000
 filename=file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
@@ -138,12 +138,14 @@ plotBeta(m,
          spNamesNumbers = c(T,F))
 
 
+plot(mpost$Beta) #species covariates
 plot(mpost$Gamma) #traits covariates
 
 gelman.diag(mpost$Beta[,1:50]) #establish convergence
 
 
 postGamma = getPostEstimate(m,parName = "Gamma")
+par(mar=c(10,0,0,10))
 plotGamma(m, post = postGamma, supportLevel = 0.2)
 
 # variance partitioning

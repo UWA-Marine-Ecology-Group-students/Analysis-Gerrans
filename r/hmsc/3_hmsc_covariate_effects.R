@@ -14,12 +14,11 @@ model.directory <- "output/hmsc_model_data"
 #thin 10
 nChains = 4
 samples = 1000
-thin = 100
+thin = 1000
 filename = file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
 ######## Explore parameter predictions ---------
-
 #####gradient depth-----
 Gradientd = constructGradient(m,focalVariable = "depth")
 head(Gradientd$XDataNew)
@@ -48,7 +47,7 @@ predY = predict(m,
                 expected = TRUE)
 
 #species
-plotGradient(m, Gradients, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradients, pred=predY, measure="Y", index = 6, showData = TRUE,  jigger = 0.1)
 #totalcount
 plotGradient(m, Gradients, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
 #traits
@@ -64,7 +63,7 @@ predY = predict(m,
                 expected = TRUE)
 
 #species
-plotGradient(m, Gradientde, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradientde, pred=predY, measure="Y", index = 3, showData = TRUE,  jigger = 0.1)
 #totalcount
 plotGradient(m, Gradientde, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
 #traits
@@ -96,7 +95,7 @@ predY = predict(m,
                 expected = TRUE)
 
 #species
-plotGradient(m, Gradientmr, pred=predY, measure="Y", index = 8, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradientmr, pred=predY, measure="Y", index = 3, showData = TRUE,  jigger = 0.1)
 #totalcount
 plotGradient(m, Gradientmr, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
 #traits
