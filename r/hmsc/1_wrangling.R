@@ -60,10 +60,10 @@ head(bruv_maxn_w)
 bruv_meta    <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
 bruv_habitat <- read.csv("data/tidy/2021-05_Abrolhos_BRUVs_random-points_percent-cover_broad.habitat.csv")
 colnames(bruv_meta)                                                             # the columns of the original data that we can choose covariates from
-bruv_covs <- dplyr::select(bruv_meta, c("Sample", "Latitude", "Longitude", 
+bruv_cov <- dplyr::select(bruv_meta, c("Sample", "Latitude", "Longitude", 
                                  "Depth", "Location"))                          # collate all covariates we're interested in
-bruv_covs <- unique(bruv_covs)                                                  # collapse rows to make it one row per sample (match with bruv_maxn)
-head(bruv_covs)
+bruv_cov <- unique(bruv_cov)                                                  # collapse rows to make it one row per sample (match with bruv_maxn)
+head(bruv_cov)
 
 # clean habitat data
 head(bruv_habitat)
@@ -76,13 +76,17 @@ bruv_habitat$spongegarden <- rowSums(bruv_habitat[, colnames(bruv_habitat) %in%
 
 # add habitat to BRUV covars
 head(bruv_habitat)
-bruv_covs <- merge(bruv_covs, bruv_habitat[, colnames(bruv_habitat) %in%
+bruv_cov <- merge(bruv_cov, bruv_habitat[, colnames(bruv_habitat) %in%
                                              c("sample", "consolidated",
                                                "macroalgae", "unconsolidated",
                                                "spongegarden", "mean.relief")], 
                    by.x = "Sample", by.y = "sample")
-bruv_covs[, 6:10] <- round(bruv_covs[, 6:10], 2)
-head(bruv_covs)
+bruv_cov[, 6:10] <- round(bruv_cov[, 6:10], 2)
+head(bruv_cov)
+
+head(bruv_meta)
+bruv_status <- subset(bruv_meta, select = Status)
+bruv_covs   <- cbind(bruv_cov,bruv_status)
 
 # check dimensions against drops
 nrow(bruv_covs)
