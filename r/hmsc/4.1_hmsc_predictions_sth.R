@@ -43,35 +43,34 @@ names(covrast) <- c("slope", "detrended", "depth", "macroalgae",
 
 # just the southern site
 ssiteext <- extent(127000, 168000, 6885000, 6898000)
-covrast  <- crop(covrast, nsiteext)
-plot(covrast)
+scovrast  <- crop(covrast, ssiteext)
+plot(scovrast)
 
 # fix the coordinate system so it matches our sample crs
 proj4string(covrast) <- sppcrs
 covrast <- projectRaster(covrast, crs = wgscrs)
-covdf   <- as.data.frame(covrast, xy = TRUE, na.rm = TRUE)
-head(covdf)
-saveRDS(covdf, "output/covariate_grid.rds")
+scovdf   <- as.data.frame(covrast, xy = TRUE, na.rm = TRUE)
+head(scovdf)
+saveRDS(scovdf, "output/covariate_grid_south.rds")
 
 # save this as the grid file so you dont have to run the code above
 
 ### prepare the grid and make predictions
-covdf      <- readRDS("output/covariate_grid.rds")
+scovdf      <- readRDS("output/covariate_grid_south.rds")
 
 # load model output
 mod.dir  <- "output/hmsc_model_data"
-nChains  <- 4
-samples  <- 1000
-thin     <- 100
-filename <- file.path(paste(mod.dir), 
-                      paste0("model_chains_", as.character(nChains),
-                             "_samples_", as.character(samples),
-                             "_thin_", as.character(thin), sep = ""), sep = "")
+
+
+nChains = 4
+samples = 1000
+thin = 1000
+filename = file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
 # setup grid and gradient
-xy_grid    <- as.matrix(cbind(covdf$y, covdf$x))
-XData_grid <- covdf[ , 3:10]
+xy_grid    <- as.matrix(cbind(scovdf$y, scovdf$x))
+XData_grid <- scovdf[ , 3:10]
 summary(XData_grid)
 XGrad <- prepareGradient(m, 
                          XDataNew = XData_grid, 
@@ -104,7 +103,7 @@ length(predictsp[[1]])/nrow(XData_grid)
 # there will be a much quicker way to do this but I'm just more familiar with loops and too short on time to go hunting
 
 for(i in 1:4000){
-  predi  <- cbind(covdf[1:2], predictsp[[i]])                                   # join the coordinates and a single set of predictions
+  predi  <- cbind(scovdf[1:2], predictsp[[i]])                                   # join the coordinates and a single set of predictions
   prasti <- rasterFromXYZ(predi)                                                # make this a raster
   if(i == 1){prast <- prasti}else{                                              # if it's the first run, save it as a new object
     for(j in 1:21){                                                             # otherwise go through each layer (species)
@@ -136,6 +135,107 @@ predicted_sp <- readRDS("output/hmsc_predictions/sthsite_predicted_spdist.rds")
 
 plot(predicted_sp)
 
-## ask claude for some tips for pretty plotting if you like or I can help when I return
 
+preds_df <- as.data.frame(predicted_sp, xy = T, na.rm = T) 
+summary(preds_df)
 
+preds_long <- preds_df %>%
+  pivot_longer(names_to = "species", values_to = "abundance", cols = 3:10)
+
+library(viridis)
+library(tidyr)
+library(patchwork)
+
+calbo <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Choerodon_albofasciatus)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  #geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+calbo
+
+pspil <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Parupeneus_spilurus)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  # geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+pspil
+
+cassr <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Chaetodon_assarius)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  # geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+cassr
+
+cspp <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Chromis_spp)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  # geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+cspp
+
+dplab <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Diagramma_pictum_labiosum)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  # geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+dplab
+
+gwood <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Gymnothorax_woodwardi)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  # geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+gwood
+
+lneb <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Lethrinus_nebulosus)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  # geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+lneb
+
+pnaga <- ggplot() +
+  geom_tile(data = preds_df, aes(x, y, fill = Pentapodus_nagasakiensis)) +
+  scale_fill_viridis() +
+  # hab_cols +                                                                    # Class colours
+  # geom_sf(data = npz, fill = NA, colour = "#7bbc63") +                          # Add national park zones
+  coord_sf() +
+  labs(x = NULL, y = NULL, fill = "Abundance",                                    # Labels 
+       colour = NULL, title = "Big Bank") +
+  theme_minimal()
+pnaga
+
+png(filename = "plots/fish-dist.png",
+    width = 8, height = 4, res = 300, units = "in")
+calbo / pspil
+
+dev.off()
