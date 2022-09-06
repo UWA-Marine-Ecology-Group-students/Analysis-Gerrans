@@ -108,7 +108,6 @@ cleaned<-species.table%>%
 
 ## Make names nicer for table
 
-
 unique(cleaned$fishing.type)
 
 write.csv(cleaned, "plots/appendix_table.csv")
