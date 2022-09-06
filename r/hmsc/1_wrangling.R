@@ -55,6 +55,9 @@ bruv_maxn_w <- bruv_maxn_w[, -1]                                    # drop sampl
 head(bruv_maxn_w)
 
 
+bruv_maxn <- 
+
+
 #### wrangle habitat and environmental covariate info into wide format ----
 
 bruv_meta    <- read.csv("data/raw/em export/2021-05_Abrolhos_stereo-BRUVs_Metadata.csv.csv")
