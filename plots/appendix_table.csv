@@ -1,0 +1,88 @@
+"","family","genus.species","australian.common.name","fishing.type","iucn.ranking","mean.relative.abundance.per.deployment.plus.minus.SE","total.relative.abundance"
+"1","Acanthuridae","Acanthurus grammoptilus","Inshore surgeonfish","","Least Concern","0.08 +/- 0.08",4
+"2","Acanthuridae","Acanthurus olivaceus","Orangeblotch surgeonfish","","Least Concern","0.08 +/- 0.08",4
+"3","Apogonidae","Ostorhinchus spp",NA,"",NA,"0.31 +/- 0.16",15
+"4","Ariidae","Netuma thalassina","Giant sea catfish","",NA,"0.02 +/- 0.02",1
+"5","Carangidae","Carangoides fulvoguttatus","Turrum","Commercial","Least Concern","0.02 +/- 0.02",1
+"6","Carangidae","Carangoides spp",NA,"",NA,"0.12 +/- 0.12",6
+"7","Carangidae","Decapterus muroadsi","Temperate scad","","Least Concern","0.02 +/- 0.02",1
+"8","Carangidae","Decapterus spp",NA,"",NA,"0.12 +/- 0.1",6
+"9","Carangidae","Pseudocaranx spp",NA,"",NA,"0.27 +/- 0.19",13
+"10","Carangidae","Seriola dumerili","Amberjack","","Least Concern","0.47 +/- 0.19",23
+"11","Carangidae","Seriola hippos","Samsonfish","Commercial","Least Concern","0.39 +/- 0.09",19
+"12","Carangidae","Unknown spp",NA,"",NA,"0.02 +/- 0.02",1
+"13","Carcharhinidae","Carcharhinus plumbeus","Sandbar shark","Commercial","Vulnerable","0.12 +/- 0.05",6
+"14","Carcharhinidae","Carcharhinus spp",NA,"",NA,"0.02 +/- 0.02",1
+"15","Carcharhinidae","Galeocerdo cuvier","Tiger shark","","Near Threatened","0.04 +/- 0.03",2
+"16","Chaetodontidae","Chaetodon assarius","Western butterflyfish","","Least Concern","1.22 +/- 1.04",60
+"17","Chaetodontidae","Chaetodon auriga","Threadfin butterflyfish","","Least Concern","0.04 +/- 0.04",2
+"18","Chaetodontidae","Chaetodon lunula","Racoon butterflyfish","","Least Concern","0.04 +/- 0.04",2
+"19","Cheilodactylidae","Cheilodactylus gibbosus","Magpie morwong","",NA,"0.02 +/- 0.02",1
+"20","Cirrhitidae","Paracirrhites forsteri","Freckled hawkfish","","Least Concern","0.06 +/- 0.03",3
+"21","Dasyatidae","Taeniurops meyeni","Blotched fantail ray","","Vulnerable","0.04 +/- 0.03",2
+"22","Echeneidae","Echeneis naucrates","Sharksucker","","Least Concern","0.04 +/- 0.03",2
+"23","Gerreidae","Parequula spp",NA,"",NA,"0.12 +/- 0.06",6
+"24","Glaucosomatidae","Glaucosoma buergeri","Northern pearl perch","Commercial",NA,"0.06 +/- 0.05",3
+"25","Haemulidae","Diagramma pictum labiosum","Painted sweetlips","Commercial",NA,"0.43 +/- 0.2",21
+"26","Labridae","Anampses caeruleopunctatus","Diamond wrasse","","Least Concern","0.02 +/- 0.02",1
+"27","Labridae","Anampses geographicus","Scribbled wrasse","","Least Concern","0.1 +/- 0.08",5
+"28","Labridae","Austrolabrus maculatus","Blackspotted wrasse","","Least Concern","0.02 +/- 0.02",1
+"29","Labridae","Bodianus bilunulatus","Saddleback pigfish","","Least Concern","0.1 +/- 0.07",5
+"30","Labridae","Bodianus solatus","Sunburnt pigfish","","Data Deficient","0.22 +/- 0.07",11
+"31","Labridae","Bodianus spp",NA,"",NA,"0.02 +/- 0.02",1
+"32","Labridae","Bodianus vulpinus","Western pigfish","","Least Concern","0.04 +/- 0.03",2
+"33","Labridae","Choerodon albofasciatus",NA,"",NA,"0.29 +/- 0.09",14
+"34","Labridae","Choerodon rubescens","Baldchin groper","Commercial","Least Concern","0.57 +/- 0.18",28
+"35","Labridae","Coris auricularis","Western King wrasse","","Least Concern","12.06 +/- 4.59",591
+"36","Labridae","Coris caudimacula","Spot-tail wrasse","","Least Concern","0.02 +/- 0.02",1
+"37","Labridae","Labroides dimidiatus","Common cleanerfish","","Least Concern","0.16 +/- 0.09",8
+"38","Labridae","Suezichthys cyanolaemus","Bluethroat rainbow wrasse","","Least Concern","0.45 +/- 0.15",22
+"39","Labridae","Thalassoma lutescens","Green moon wrasse","","Least Concern","0.06 +/- 0.06",3
+"40","Labridae","Unknown spp",NA,"",NA,"0.04 +/- 0.03",2
+"41","Lethrinidae","Gymnocranius grandoculis","Robinson's seabream","Commercial","Least Concern","0.14 +/- 0.07",7
+"42","Lethrinidae","Gymnocranius spp",NA,"",NA,"0.06 +/- 0.03",3
+"43","Lethrinidae","Lethrinus miniatus","Redthroat emperor","Commercial","Least Concern","1.94 +/- 0.37",95
+"44","Lethrinidae","Lethrinus nebulosus","Spangled emperor","Commercial","Least Concern","0.59 +/- 0.17",29
+"45","Lethrinidae","Lethrinus punctulatus","Bluespotted emperor","Commercial","Least Concern","0.02 +/- 0.02",1
+"46","Lethrinidae","Lethrinus ravus","Drab emperor","Commercial","Least Concern","0.1 +/- 0.08",5
+"47","Lutjanidae","Pristipomoides multidens","Goldband snapper","Commercial","Least Concern","0.57 +/- 0.21",28
+"48","Lutjanidae","Pristipomoides typus","Sharptooth snapper","Commercial","Least Concern","0.14 +/- 0.09",7
+"49","Monacanthidae","Aluterus scriptus","Scrawled leatherjacket","","Least Concern","0.02 +/- 0.02",1
+"50","Monacanthidae","Eubalichthys caeruleoguttatus","Bluespotted leatherjacket","","Data Deficient","0.02 +/- 0.02",1
+"51","Monacanthidae","Nelusetta ayraud","Ocean jacket","",NA,"0.08 +/- 0.05",4
+"52","Mullidae","Parupeneus chrysopleuron","Rosy goatfish","",NA,"0.02 +/- 0.02",1
+"53","Mullidae","Parupeneus spilurus","Blacksaddle goatfish","","Least Concern","0.67 +/- 0.29",33
+"54","Muraenidae","Gymnothorax nudivomer","Yellowmouth moray","",NA,"0.02 +/- 0.02",1
+"55","Muraenidae","Gymnothorax thyrsoideus","Greyface moray","",NA,"0.02 +/- 0.02",1
+"56","Muraenidae","Gymnothorax woodwardi","Woodward's moray","",NA,"0.31 +/- 0.08",15
+"57","Nemipteridae","Pentapodus nagasakiensis","Japanese threadfin bream","","Least Concern","0.29 +/- 0.16",14
+"58","Orectolobidae","Orectolobus hutchinsi","Western wobbegong","","Least Concern","0.02 +/- 0.02",1
+"59","Ostraciidae","Tetrosomus reipublicae","Smallspine turretfish","",NA,"0.02 +/- 0.02",1
+"60","Pempherididae","Pempheris tominagai",NA,"",NA,"0.14 +/- 0.14",7
+"61","Pinguipedidae","Parapercis haackei","Wavy grubfish","",NA,"0.02 +/- 0.02",1
+"62","Pinguipedidae","Parapercis nebulosa","Pinkbanded grubfish","",NA,"0.22 +/- 0.07",11
+"63","Pinguipedidae","Parapercis spp",NA,"",NA,"0.06 +/- 0.03",3
+"64","Pomacanthidae","Chaetodontoplus personifer","Yellowtail angelfish","","Least Concern","0.08 +/- 0.06",4
+"65","Pomacanthidae","Pomacanthus semicirculatus","Blue angelfish","","Least Concern","0.02 +/- 0.02",1
+"66","Pomacentridae","Chromis spp",NA,"",NA,"12.39 +/- 5.8",607
+"67","Pomacentridae","Parma mccullochi","McCulloch's scalyfin","",NA,"0.02 +/- 0.02",1
+"68","Rachycentridae","Rachycentron canadum","Cobia","","Least Concern","0.02 +/- 0.02",1
+"69","Rhinidae","Rhynchobatus australiae","Whitespotted guitarfish","","Critically Endangered","0.02 +/- 0.02",1
+"70","Scaridae","Scarus sp3",NA,"",NA,"0.2 +/- 0.12",10
+"71","Scaridae","Scarus spp",NA,"",NA,"0.04 +/- 0.03",2
+"72","Scombridae","Scomberomorus spp",NA,"",NA,"0.14 +/- 0.12",7
+"73","Serranidae","Epinephelus areolatus","Yellowspotted rockcod","Commercial","Least Concern","0.14 +/- 0.08",7
+"74","Serranidae","Epinephelus morrhua","Comet grouper","Commercial","Least Concern","0.02 +/- 0.02",1
+"75","Serranidae","Epinephelus rivulatus","Chinaman rockcod","","Least Concern","0.06 +/- 0.03",3
+"76","Siganidae","Siganus argenteus","Forktail rabbitfish","","Least Concern","0.1 +/- 0.1",5
+"77","Siganidae","Siganus punctatus","Spotted rabbitfish","","Least Concern","0.04 +/- 0.04",2
+"78","Sparidae","Chrysophrys auratus","Pink snapper","Commercial","Least Concern","2.92 +/- 0.73",143
+"79","Sphyrnidae","Sphyrna lewini","Scalloped hammerhead","Commercial","Endangered","0.02 +/- 0.02",1
+"80","Tetraodontidae","Lagocephalus sceleratus","Silver toadfish","","Least Concern","0.31 +/- 0.1",15
+"81","Tetraodontidae","Torquigener pallimaculatus","Rusty-spotted toadfish","","Least Concern","0.08 +/- 0.06",4
+"82","Tetraodontidae","Unknown spp",NA,"",NA,"0.02 +/- 0.02",1
+"83","Triakidae","Hemitriakis falcata","Sicklefin houndshark","","Least Concern","0.06 +/- 0.03",3
+"84","Triakidae","Mustelus ravidus","Grey gummy shark","","Least Concern","0.1 +/- 0.04",5
+"85","Trygonorrhinidae","Aptychotrema vincentiana",NA,"",NA,"0.02 +/- 0.02",1
+"86","Urolophidae","Unknown spp",NA,"",NA,"0.02 +/- 0.02",1
+"87","Zanclidae","Zanclus cornutus","Moorish Idol","","Least Concern","0.04 +/- 0.04",2
