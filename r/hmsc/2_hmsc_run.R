@@ -163,7 +163,6 @@ toPlot = ((OmegaCor[[1]]$support>supportLevel)
           + (OmegaCor[[1]]$support<(1-supportLevel))>0)*OmegaCor[[1]]$mean
 toPlot = sign(toPlot)
 plotOrder = corrMatOrder(OmegaCor[[1]]$mean,order="AOE")
-corrplot(toPlot[plotOrder,plotOrder], method = "color", tl.cex=0.5,
+corrplot(toPlot[plotOrder,plotOrder], method = "color", tl.cex=0.7, tl.col = 'black',
          col=colorRampPalette(c("blue", "white", "red"))(255))
-
-
+ 

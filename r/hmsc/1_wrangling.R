@@ -136,11 +136,11 @@ saveRDS(envcov, "data/spatial/rasters/bathy_derivatives.rds")
 #### generate traits table including each species ----
 
 # read body length and mass
-# bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv") # both measures appear in mass table
+bodylength <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.length.csv") # both measures appear in mass table
 bodymass   <- read.csv("data/tidy/2021-05_Abrolhos_stereo-BRUVs_complete.mass.csv")
 
 # clean up/remove species from length/mass data if they have NA in any measurement info
-#bodylength <- na.omit(bodylength)
+bodylength <- na.omit(bodylength)
 bodymass   <- na.omit(bodymass)
 
 # calculate mean body measures per fish
