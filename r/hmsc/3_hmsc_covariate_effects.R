@@ -18,6 +18,14 @@ thin = 1000
 filename = file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
+## plot distribution of species-specific explanatory power (r2)
+preds = computePredictedValues(m)
+MF = evaluateModelFit(hM=m, predY=preds)
+hist(MF$SR2, xlim = c(0,1), main=paste0("Mean = ", round(mean(MF$SR2),2)))
+
+# note that for many species r2 was low but there are a few for which this model has good explanatory power (>0.7)
+# up to you if you want to use this but may be something we add to supplementary materials
+
 ######## Explore parameter predictions ---------
 #####gradient depth-----
 Gradientd = constructGradient(m,focalVariable = "depth")

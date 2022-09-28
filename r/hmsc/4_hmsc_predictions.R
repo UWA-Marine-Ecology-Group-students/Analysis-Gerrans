@@ -72,7 +72,7 @@ mod.dir  <- "output/hmsc_model_data"
 nChains = 4
 samples = 1000
 thin = 1000
-filename = file.path(paste(model.directory), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
+filename = file.path(paste(mod.dir), paste0("model_chains_",as.character(nChains),"_samples_",as.character(samples),"_thin_",as.character(thin)))
 load(filename)
 
 # setup grid and gradient
