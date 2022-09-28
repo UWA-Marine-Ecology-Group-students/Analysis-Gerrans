@@ -21,10 +21,13 @@ load(filename)
 ## plot distribution of species-specific explanatory power (r2)
 preds = computePredictedValues(m)
 MF = evaluateModelFit(hM=m, predY=preds)
-hist(MF$SR2, xlim = c(0,1), main=paste0("Mean = ", round(mean(MF$SR2),2)))
+x_expression <- expression(R^2)
+hist(MF$SR2, xlim = c(0,1), main=paste0("Mean = ", round(mean(MF$SR2),2)), xlab = x_expression)
 
-# note that for many species r2 was low but there are a few for which this model has good explanatory power (>0.7)
-# up to you if you want to use this but may be something we add to supplementary materials
+# note that for many species r2 was low but there are a few for which this 
+# model has good explanatory power (>0.7)
+# up to you if you want to use this but may be something we add to 
+# supplementary materials
 
 ######## Explore parameter predictions ---------
 #####gradient depth-----
