@@ -62,5 +62,5 @@ ta.sr <- bruv_maxn %>%
   dplyr::glimpse()
 
 
+write.csv(ta.sr, "plots/ta.sr.csv")
 
-saveRDS(ta.sr, "plots/ta.sr.rds")
