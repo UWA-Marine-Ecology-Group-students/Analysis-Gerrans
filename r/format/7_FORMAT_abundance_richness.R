@@ -63,4 +63,3 @@ ta.sr <- bruv_maxn %>%
 
 
 write.csv(ta.sr, "plots/ta.sr.csv")
-
