@@ -158,11 +158,18 @@ plotVariancePartitioning(m, VP = VP, las =2, horiz = F, cols = c("red3",
 # plot among species associations
 library(corrplot)
 OmegaCor = computeAssociations(m)
-supportLevel = 0.85    # note I have reduced the statistical support needed to display the correlation somewhat
-toPlot = ((OmegaCor[[1]]$support>supportLevel)
-          + (OmegaCor[[1]]$support<(1-supportLevel))>0)*OmegaCor[[1]]$mean
-toPlot = sign(toPlot)
 plotOrder = corrMatOrder(OmegaCor[[1]]$mean,order="AOE")
-corrplot(toPlot[plotOrder,plotOrder], method = "color", tl.cex=0.7, tl.col = 'black',
+corrplot(as.matrix(OmegaCor[[1]]$mean)[plotOrder,plotOrder], method = "circle", tl.cex=0.7, tl.col = 'black',
+         diag = FALSE, type = "lower",
          col=colorRampPalette(c("blue", "white", "red"))(255))
  
+
+# just in case we want to use support level to remove corrs
+# supportLevel = 0.65    # note I have reduced the statistical support needed to display the correlation somewhat
+# toPlot = ((OmegaCor[[1]]$support>supportLevel)
+#           + (OmegaCor[[1]]$support<(1-supportLevel))>0)*OmegaCor[[1]]$mean
+# toPlot = sign(toPlot)
+# plotOrder = corrMatOrder(OmegaCor[[1]]$mean,order="AOE")
+# corrplot(toPlot[plotOrder,plotOrder], method = "circle", tl.cex=0.7, tl.col = 'black',
+#          diag = FALSE, type = "lower",
+#          col=colorRampPalette(c("blue", "white", "red"))(255))
