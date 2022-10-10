@@ -1,4 +1,4 @@
-###
+ ###
 # Project: Molly Thesis
 # Data:    HMSC Outputs
 # Task:    Predict species distributions and other outputs
@@ -97,9 +97,12 @@ length(predictsp)
 length(predictsp[[1]])
 nrow(XData_grid)
 length(predictsp[[1]])/nrow(XData_grid)
-# ok - the dimensions of these estimates are really confusing me, but lets see if we can just get some predictions onto a map.
+# ok - the dimensions of these estimates are really confusing me, 
+#but lets see if we can just get some predictions onto a map.
 
-# calculate the mean prediction for each species from up to 4000 estimates - assume that's what has happened here.. why 4000 I'm not sure
+# calculate the mean prediction for each species from up to 4000 
+#estimates - assume that's what has happened here.. why 4000 I'm not
+# sure
 # there will be a much quicker way to do this but I'm just more familiar with loops and too short on time to go hunting
 
 for(i in 1:4000){
@@ -116,7 +119,9 @@ prast <- prast/4000                                                             
 plot(prast)
 
 # obviously the values are incorrect but looking at the relative distributions, the values look quite cool.
-# the huge values could be because we used scaled (transformed) covariates in the model but didn't scale the covariates we predicted with
+# the huge values could be because we used scaled (transformed) 
+# covariates in the model but didn't scale the covariates we 
+# predicted with
 # I will review this fully when I get back.
 
 # some of the species had no non-zero predictions - I assume these were quite rare?

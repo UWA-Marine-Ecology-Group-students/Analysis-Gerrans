@@ -125,35 +125,41 @@ gelman.diag(mpost$Beta[,1:50])
 
 # check out the estimate values themselves
 postBeta = getPostEstimate(m, parName = "Beta")
-par(mar=c(6.5,20,1,0))
+par(mar=c(8,20,1,0))
+
 plotBeta(m,
          post = postBeta, 
+         param = "Support",
+         supportLevel = 0.66,
+         cex = c(0.9, 1, 0.8),
+         mgp = c(10, 2, 0),
          plotTree = F,
          spNamesNumbers = c(T,F))
 
 
+ 
 plot(mpost$Beta) #species covariates
 plot(mpost$Gamma) #traits covariates
 
 gelman.diag(mpost$Beta[,1:50]) #establish convergence
 
 postGamma = getPostEstimate(m,parName = "Gamma")
-plotGamma(m, post = postGamma, supportLevel = 0.2, mar = c(7.5,14,1,1))
+plotGamma(m, post = postGamma, supportLevel = 0.6, mar = c(7.5,14,1,1))
 
 # variance partitioning
 #need to get sp label and key off grid
 VP = computeVariancePartitioning(m)
 dev.off()
 par(mar=c(13,5,5,5))
-plotVariancePartitioning(m, VP = VP, las =2, horiz = F, cols = c("red3", 
+plotVariancePartitioning(m, VP = VP, las =2, horiz = F, legend.text = TRUE, cols = c("red3", 
                                                                  "blue", 
-                                                                 "green", 
-                                                                 "purple3",
-                                                                 "aquamarine",
-                                                                 "cyan",
-                                                                 "blueviolet",
-                                                                 "coral",
-                                                                 "brown1"))
+                                                                 "yellow", 
+                                                                 "blue1",
+                                                                 "blue3",
+                                                                 "blue4",
+                                                                 "red2",
+                                                                 "red",
+                                                                 "yellow3"))
 
 # plot among species associations
 library(corrplot)

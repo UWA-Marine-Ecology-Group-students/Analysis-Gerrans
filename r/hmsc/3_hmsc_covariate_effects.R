@@ -41,7 +41,7 @@ predY = predict(m,
 par(mar=c(5,6,3,2))
 
 #species
-plotGradient(m, Gradientd, pred=predY, measure="Y", index = 9, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradientd, pred=predY, measure="Y", index = 6, showData = TRUE,  jigger = 0.1)
 #totalcount
 plotGradient(m, Gradientd, pred=predY, measure="S",showData = TRUE, jigger = 0.1)
 #traits
@@ -58,7 +58,7 @@ predYs = predict(m,
                 expected = TRUE)
 
 #species
-plotGradient(m, Gradients, pred=predYs, measure="Y", index = 6, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradients, pred=predYs, measure="Y", index = 16, showData = TRUE,  jigger = 0.1)
 #totalcount
 plotGradient(m, Gradients, pred=predYs, measure="S",showData = TRUE, jigger = 0.1)
 #traits
@@ -74,11 +74,11 @@ predYde = predict(m,
                 expected = TRUE)
 
 #species
-plotGradient(m, Gradientde, pred=predYde, measure="Y", index = 6, showData = TRUE,  jigger = 0.1)
+plotGradient(m, Gradientde, pred=predYde, measure="Y", index = 16, showData = TRUE,  jigger = 0.1)
 #totalcount
 plotGradient(m, Gradientde, pred=predYde, measure="S",showData = TRUE, jigger = 0.1)
 #traits
-plotGradient(m, Gradientde, pred=predYde, measure="T", index = 5, showData = TRUE, jigger = 0.1)
+plotGradient(m, Gradientde, pred=predYde, measure="T", index = 4, showData = TRUE, jigger = 0.1)
 
 #####gradient macroalgae-----
 Gradientm = constructGradient(m,focalVariable = "macroalgae")
@@ -110,7 +110,7 @@ plotGradient(m, Gradientmr, pred=predYmr, measure="Y", index = 9, showData = TRU
 #totalcount
 plotGradient(m, Gradientmr, pred=predYmr, measure="S",showData = TRUE, jigger = 0.1)
 #traits
-plotGradient(m, Gradientmr, pred=predYmr, measure="T", index = 5, showData = TRUE, jigger = 0.1)
+plotGradient(m, Gradientmr, pred=predYmr, measure="T", index = 2, showData = TRUE, jigger = 0.1)
 
 #####gradient spongegarden-----
 Gradientsg = constructGradient(m,focalVariable = "spongegarden")
