@@ -125,13 +125,13 @@ gelman.diag(mpost$Beta[,1:50])
 
 # check out the estimate values themselves
 postBeta = getPostEstimate(m, parName = "Beta")
-par(mar=c(8,20,1,0))
+par(mar=c(10,20,1,0))
 
 plotBeta(m,
          post = postBeta, 
          param = "Support",
          supportLevel = 0.66,
-         cex = c(0.9, 1, 0.8),
+         cex = c(1, 1.2, 0.8),
          mgp = c(10, 2, 0),
          plotTree = F,
          spNamesNumbers = c(T,F))
@@ -144,7 +144,8 @@ plot(mpost$Gamma) #traits covariates
 gelman.diag(mpost$Beta[,1:50]) #establish convergence
 
 postGamma = getPostEstimate(m,parName = "Gamma")
-plotGamma(m, post = postGamma, supportLevel = 0.6, mar = c(7.5,14,1,1))
+plotGamma(m, post = postGamma, supportLevel = 0.6, 
+          mar = c(10,16,1,1),cex = c(1, 1, 0.8))
 
 # variance partitioning
 #need to get sp label and key off grid
