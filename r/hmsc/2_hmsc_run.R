@@ -162,6 +162,24 @@ plotVariancePartitioning(m, VP = VP, las =2, horiz = F, legend.text = TRUE, cols
                                                                  "red",
                                                                  "yellow3"))
 
+varpart           <- as.data.frame(VP$vals)
+varpart$mean      <- round(rowMeans(varpart), 3) * 100
+varpart$covariate <- rownames(varpart)
+varpart           <- melt(varpart, id.vars = c("covariate", "mean"))
+head(varpart)
+
+varpart$covariate <- factor(varpart$covariate, levels = c("depth", "slope", "detrended", 'mean.relief',
+                                                          "consolidated", "macroalgae", "spongegarden",
+                                                          "unconsolidated", "Random: sample"))
+
+ggplot(varpart, aes(variable, value, fill = covariate)) + 
+  geom_col(position = "stack") +
+  scale_fill_manual(values=c("steelblue", "burlywood1",  "lightblue",
+                             "darkseagreen", "linen", "goldenrod2", "beige",
+                             "thistle4", "grey70" )) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, face = "italic")) +
+  labs(x = NULL)
+
 # plot among species associations
 library(corrplot)
 OmegaCor = computeAssociations(m)
