@@ -60,4 +60,6 @@ ggplot(beta_ci[beta_ci$covariate != "Intercept", ],
   facet_grid( ~ covariate, scales = "free") +
   theme_minimal() +
   theme(axis.title = element_blank(), 
-        plot.title = element_text(size=10))
+        plot.title = element_text(size=20)) +
+  theme(axis.text.y = element_text(face = "italic"))+
+  theme(text = element_text(size = 22))
