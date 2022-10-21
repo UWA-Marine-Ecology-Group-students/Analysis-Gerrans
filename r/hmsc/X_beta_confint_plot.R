@@ -62,4 +62,4 @@ ggplot(beta_ci[beta_ci$covariate != "Intercept", ],
   theme(axis.title = element_blank(), 
         plot.title = element_text(size=20)) +
   theme(axis.text.y = element_text(face = "italic"))+
-  theme(text = element_text(size = 22))
+  theme(text = element_text(size = 24))
