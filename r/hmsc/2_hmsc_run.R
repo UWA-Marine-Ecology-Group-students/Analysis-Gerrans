@@ -125,7 +125,7 @@ gelman.diag(mpost$Beta[,1:50])
 
 # check out the estimate values themselves
 postBeta = getPostEstimate(m, parName = "Beta")
-par(mar=c(10,20,1,0))
+par(mar=c(15.5,20,1,0))
 
 plotBeta(m,
          post = postBeta, 
@@ -174,11 +174,17 @@ varpart$covariate <- factor(varpart$covariate, levels = c("depth", "slope", "det
 
 ggplot(varpart, aes(variable, value, fill = covariate)) + 
   geom_col(position = "stack") +
-  scale_fill_manual(values=c("steelblue", "burlywood1",  "lightblue",
-                             "darkseagreen", "linen", "goldenrod2", "beige",
-                             "thistle4", "grey70" )) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, face = "italic")) +
-  labs(x = NULL)
+  scale_fill_manual(values=c("lightblue","darkseagreen","steelblue",
+                             "tan", 
+                             "indianred3", "goldenrod2", "sienna2", "lightgoldenrod",
+                             "grey70" )) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, face = "italic", size = 18)) +
+  theme(legend.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 20)) +
+  theme(axis.title.y = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 15)) +
+  labs(x = NULL) +
+  labs(y = "Variance proportion")
 
 # plot among species associations
 library(corrplot)
